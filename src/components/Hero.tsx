@@ -20,7 +20,7 @@ export function Hero() {
           </div>
 
           <h1 className={styles.title} data-hero-reveal>
-            信頼できる業者選びで、
+            信頼できる業者選びで
             <br />
             <em>外壁塗装</em>を成功へ。
           </h1>
@@ -34,7 +34,7 @@ export function Hero() {
             <br />
             信頼できる塗装業者を複数比較・検討できます。
             <br />
-            地元宮城で評判の業者だけを厳選紹介する、
+            地元宮城で評判の業者だけを厳選紹介する
             <br />
             無料の一括見積もり比較サービスです。
           </p>

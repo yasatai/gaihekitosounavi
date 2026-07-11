@@ -31,7 +31,7 @@ export function Compare() {
             <div className={styles.panel}>
               <span className={styles.badge}>総額だけで判断</span>
               <h3 className={styles.panelTitle}>
-                安く見えても、
+                安く見えても
                 <br />
                 理由が分かりにくい
               </h3>

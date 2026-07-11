@@ -24,6 +24,10 @@ export function Loader() {
     const finish = () => {
       root.classList.remove('is-loading');
       reveal();
+      // コンテンツの高さが確定したこの時点で先頭へ固定し、
+      // ブラウザによるスクロール位置の復元（Hero以外へ戻る）を打ち消す。
+      window.scrollTo(0, 0);
+      requestAnimationFrame(() => window.scrollTo(0, 0));
       setDone(true);
     };
 
