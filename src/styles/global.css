@@ -99,6 +99,14 @@ body {
   text-wrap: pretty;
 }
 
+/* BudouX で文節境界(U+200B)を挿入したテキスト用。
+   keep-all で文字単位の改行を止め、挿入した境界だけで改行させる（全ブラウザ対応）。
+   長すぎる文節はみ出し対策に overflow-wrap: anywhere を併用。 */
+.ja-wrap {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
 /* PC幅前提で入れた手動改行 <br class="pcbr"> は、モバイルでは不自然になるため無効化し、
    文節単位の自動折り返しに任せる。 */
 @media (max-width: 599px) {
@@ -521,12 +529,12 @@ a {
   }
 }
 
-/* ===== Heroをピン留め（固定）：スクロールすると次のセクションが上に重なって出る =====
-   Heroは sticky で画面に貼りつき、続くセクション群（.over-hero）が上に重なって
-   スクロールしていく。各セクションは不透明な背景写真（is-paint）で Hero を覆う。 */
+/* ===== Hero → 次セクションは通常スクロールで連続的に切り替える =====
+   以前は Hero を sticky でピン留めし、次セクションを上に重ねていたが、
+   「Heroが止まったまま次パネルがせり上がる」動きが不自然だったため、
+   通常フローのスクロール（Heroがそのまま上へ流れて次セクションが続く）に変更。 */
 [data-hero] {
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 0;
 }
 

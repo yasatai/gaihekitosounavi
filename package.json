@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "budoux": "^0.8.4",
     "gsap": "^3.15.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"

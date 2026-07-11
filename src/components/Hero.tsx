@@ -22,7 +22,7 @@ export function Hero() {
           <h1 className={styles.title} data-hero-reveal>
             信頼できる業者選びで
             <br />
-            <em>外壁塗装</em>を成功へ。
+            <em>外壁塗装</em>を成功へ
           </h1>
 
           <div className={styles.tagline} data-hero-reveal>

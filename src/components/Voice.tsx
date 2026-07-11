@@ -1,6 +1,7 @@
 import { SectionHeading } from './SectionHeading';
 import { IconQuote } from './Icons';
 import { testimonials } from '../data/testimonials';
+import { Ja } from '../lib/ja';
 import styles from './Voice.module.css';
 
 export function Voice() {
@@ -17,9 +18,13 @@ export function Voice() {
                 </div>
                 <span className={styles.tag}>{t.tag}</span>
               </div>
-              <h3 className={styles.title}>{t.title}</h3>
+              <h3 className={styles.title}>
+                <Ja>{t.title}</Ja>
+              </h3>
               <div className={styles.meta}>{t.meta}</div>
-              <p className={styles.body}>{t.body}</p>
+              <p className={styles.body}>
+                <Ja>{t.body}</Ja>
+              </p>
               <div className={styles.footer}>
                 <span>
                   施工：<b>{t.work}</b>
