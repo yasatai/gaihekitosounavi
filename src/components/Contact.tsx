@@ -33,7 +33,7 @@ export function Contact() {
 
     setStatus('sending');
     try {
-      const res = await fetch('/send.php', {
+      const res = await fetch(`${import.meta.env.BASE_URL}send.php`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ place, ...form, consent }),
@@ -152,7 +152,11 @@ export function Contact() {
                 onChange={(e) => setConsent(e.target.checked)}
               />
               <span>
-                <a href="/privacy-policy/" target="_blank" rel="noreferrer">
+                <a
+                  href={`${import.meta.env.BASE_URL}privacy-policy/`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   プライバシーポリシー
                 </a>
                 に同意する

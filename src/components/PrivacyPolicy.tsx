@@ -5,14 +5,14 @@ export function PrivacyPolicy() {
   return (
     <div className={styles.page}>
       <header className={styles.bar}>
-        <a href="/" className={styles.brand}>
+        <a href={import.meta.env.BASE_URL} className={styles.brand}>
           <LogoMark size={34} />
           <span className={styles.brandText}>
             <span className={styles.brandJa}>外壁・屋根塗装ナビ</span>
             <span className={styles.brandEn}>MIYAGI PAINTING NAVI</span>
           </span>
         </a>
-        <a href="/" className={styles.back}>
+        <a href={import.meta.env.BASE_URL} className={styles.back}>
           ← トップへ戻る
         </a>
       </header>
@@ -203,7 +203,7 @@ export function PrivacyPolicy() {
         </section>
 
         <div className={styles.backWrap}>
-          <a href="/" className={styles.backBtn}>
+          <a href={import.meta.env.BASE_URL} className={styles.backBtn}>
             ← トップページへ戻る
           </a>
         </div>

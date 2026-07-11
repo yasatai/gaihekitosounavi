@@ -48,7 +48,7 @@ export function Footer() {
             <a href="#contact-link" className={styles.accent}>
               無料相談
             </a>
-            <a href="/privacy-policy/">プライバシーポリシー</a>
+            <a href={`${import.meta.env.BASE_URL}privacy-policy/`}>プライバシーポリシー</a>
           </div>
         </div>
 
