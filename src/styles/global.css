@@ -259,6 +259,20 @@ a {
     url('/section-bg.jpg');
 }
 
+/* 築年数かんたん診断だけ専用の背景写真に差し替え（他セクションは共通のペイント背景）。
+   写真が明るいので薄めのベールに留め、家・空を活かす。size/position/attachment は
+   上の .is-stage.is-paint::before から継承。 */
+#shindan-link.is-paint::before {
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(240, 248, 255, 0.4) 0%,
+      rgba(240, 248, 255, 0.26) 45%,
+      rgba(240, 248, 255, 0.48) 100%
+    ),
+    url('/diagnosis.jpg');
+}
+
 /* Cases: content aligned to top, horizontal track scrolls sideways. */
 .is-stage-cases {
   justify-content: center;
