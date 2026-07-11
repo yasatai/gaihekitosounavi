@@ -35,7 +35,7 @@
   font-family: var(--font-latin);
   font-weight: 700;
   font-size: 46px;
-  color: #e3eaf1;
+  color: rgba(31, 67, 106, 0.4);
 }
 
 .title {
