@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useIsDesktop } from '../hooks/useMediaQuery';
 import { navLinks } from '../data/nav';
 import { LogoMark } from './Icons';
@@ -9,9 +9,27 @@ export function Header() {
   const [navOpen, setNavOpen] = useState(false);
   const closeNav = () => setNavOpen(false);
 
+  // ヘッダーバーの実高さを CSS 変数 --header-h に反映する。
+  // Hero の sticky 位置（ヘッダー直下）やアンカーのオフセットが実測値に追従し、
+  // 「Heroが一度ヘッダーの下に潜ってから固定される」二段階の動きを防ぐ。
+  // ドロワー（モバイルメニュー）は含めず、バー部分のみを測る。
+  const barRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = barRef.current;
+    if (!el) return;
+    const apply = () => {
+      // +1 はヘッダー下線（border-bottom）ぶん
+      document.documentElement.style.setProperty('--header-h', `${el.offsetHeight + 1}px`);
+    };
+    apply();
+    const ro = new ResizeObserver(apply);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   return (
     <header className={styles.header}>
-      <div className={styles.bar}>
+      <div className={styles.bar} ref={barRef}>
         <a href="#top" className={styles.brand}>
           <LogoMark />
           <span className={styles.brandText}>

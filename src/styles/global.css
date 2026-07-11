@@ -47,7 +47,7 @@ html.is-loading body {
 
 /* Smooth section-to-section scrolling (nav links / scroll cue) */
 html {
-  scroll-padding-top: 72px;
+  scroll-padding-top: var(--header-h, 72px);
   /* Always reserve the scrollbar gutter so locking scroll during the opening
      animation doesn't change the layout width (no left-shift when Hero appears). */
   scrollbar-gutter: stable;
@@ -535,7 +535,9 @@ a {
    useHeroParallax でスクロールに合わせてフェード＆ドリフトさせる（全画面幅対応）。 */
 [data-hero] {
   position: sticky;
-  top: 0;
+  /* ヘッダーの直下で固定する（0だと一度ヘッダーの下へ潜り込んでから止まり、
+     二段階の不自然な動きに見える）。--header-h は Header がバー実測値を設定。 */
+  top: var(--header-h, 69px);
   z-index: 0;
 }
 
