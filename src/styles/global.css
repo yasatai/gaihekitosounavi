@@ -322,6 +322,19 @@ a {
     url('/works-bg.jpg');
 }
 
+/* 塗装費用の目安(PRICE): 専用の背景写真（足場・塗装作業）。
+   表の数字が背景の上に乗るので、可読性のため少し強めのベール。 */
+#meyasu-link.is-paint::before {
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(240, 248, 255, 0.5) 0%,
+      rgba(240, 248, 255, 0.66) 42%,
+      rgba(240, 248, 255, 0.82) 100%
+    ),
+    url('/price.jpg');
+}
+
 /* モバイルは縦長画面で cover だと大きくトリミングされ過ぎるため、
    画像を「引き」にして全体を見せる（横幅に合わせ、余白は空色で補完）。 */
 @media (max-width: 599px) {
