@@ -126,17 +126,17 @@
 }
 .tdYears {
   text-align: center;
-  color: var(--text);
+  color: var(--text-2);
 }
 .tdPrice {
   text-align: right;
-  color: var(--text);
+  color: var(--text-2);
 }
 
 .note {
   margin: 28px 0 0;
   font-size: 14.5px;
-  color: var(--text);
+  color: var(--text-2);
   line-height: 2;
   text-align: center;
 }
