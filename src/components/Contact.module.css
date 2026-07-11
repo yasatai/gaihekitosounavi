@@ -1,8 +1,8 @@
 .section {
-  /* 背景の写真は is-paint(::before) が敷く。写真が出ない環境でも Hero が透けないよう、
-     不透明な明色をフォールバックに置く。明るい背景なので文字は濃色。 */
-  background: var(--bg-soft);
-  color: var(--navy);
+  /* 背景の写真は is-paint(::before)＝暗いシルエット写真＋濃紺スクリム。
+     写真が出ない環境でも Hero が透けないよう、不透明な濃色をフォールバックに。イントロは白文字。 */
+  background: var(--navy-deep);
+  color: #fff;
   position: relative;
   overflow: hidden;
 }
@@ -23,7 +23,7 @@
   font-family: var(--font-latin);
   font-weight: 600;
   font-size: 14.5px;
-  color: var(--gold);
+  color: var(--gold-light);
   letter-spacing: 0.3em;
 }
 
@@ -32,14 +32,14 @@
   font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(31px, 4.8vw, 50px);
-  color: var(--navy);
+  color: #fff;
   letter-spacing: 0.03em;
 }
 
 .introLead {
   margin: 0;
   font-size: 15.5px;
-  color: var(--text-2);
+  color: #d5e0ec;
   line-height: 1.95;
 }
 

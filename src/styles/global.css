@@ -335,6 +335,32 @@ a {
     url('/price.jpg');
 }
 
+/* よくある質問(FAQ): 専用の背景写真（夕焼けの住宅街）。
+   Q&Aの文字量が多いので、強めの明るいベールで可読性を確保。 */
+#faq-link.is-paint::before {
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(244, 248, 255, 0.74) 0%,
+      rgba(244, 248, 255, 0.68) 45%,
+      rgba(244, 248, 255, 0.8) 100%
+    ),
+    url('/faq.jpg');
+}
+
+/* 無料相談(CONTACT): 専用の背景写真（夕暮れの塗装職人シルエット）。
+   暗い写真なので濃紺スクリムで白文字を読みやすくする（文字色は Contact 側で白に）。 */
+#contact-link.is-paint::before {
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(10, 18, 32, 0.5) 0%,
+      rgba(10, 18, 32, 0.3) 35%,
+      rgba(10, 18, 32, 0.42) 100%
+    ),
+    url('/contact.jpg');
+}
+
 /* モバイルは縦長画面で cover だと大きくトリミングされ過ぎるため、
    画像を「引き」にして全体を見せる（横幅に合わせ、余白は空色で補完）。 */
 @media (max-width: 599px) {
