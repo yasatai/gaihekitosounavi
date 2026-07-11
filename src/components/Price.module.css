@@ -28,7 +28,8 @@
 
 .cols {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* min(100%, 300px) にして、320px級の狭い画面でも列がはみ出さず縮む（見切れ防止）。 */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: 30px;
   /* 足場写真の上でも表が読みやすいよう、白の面を敷いて整理する */
   background: rgba(255, 255, 255, 0.72);

@@ -1,6 +1,7 @@
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* min(100%, 300px) にして、狭い画面でも列がはみ出さず縮む（見切れ防止）。 */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: clamp(20px, 2.4vw, 32px);
 }
 

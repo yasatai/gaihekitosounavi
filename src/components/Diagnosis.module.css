@@ -70,19 +70,31 @@
 
 .ageGrid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  /* minmax(0,1fr) で列が中身の最小幅より小さくも縮めるようにし、
+     狭い画面でグリッドが親を押し広げて見切れるのを防ぐ。 */
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 8px;
 }
 
 @media (max-width: 620px) {
   .ageGrid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   /* 狭い画面ではセル幅に対して文字が収まらないため、詰めて1行に収める */
   .choice {
     padding: 15px 4px;
     font-size: 13.5px;
     white-space: nowrap;
+  }
+}
+
+/* 360px級のごく狭い画面では、ボタン文字（「8〜12年」等）がセル幅を超えるため、
+   さらに文字とパディングを詰めて3列に確実に収める。 */
+@media (max-width: 379px) {
+  .choice {
+    padding: 14px 2px;
+    font-size: 12px;
+    letter-spacing: -0.02em;
   }
 }
 

@@ -13,7 +13,8 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  /* min(100%, 320px) にして、320px級の狭い画面でもカードがはみ出さず縮む（見切れ防止）。 */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
   gap: clamp(20px, 2.4vw, 32px);
 }
 
