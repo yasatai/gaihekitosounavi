@@ -56,6 +56,6 @@
 .body {
   margin: 0;
   font-size: 15.5px;
-  color: var(--text);
+  color: var(--text-2);
   line-height: 2;
 }
