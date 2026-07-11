@@ -47,16 +47,24 @@
   line-height: 1;
 }
 
+/* max-height 方式は実際の高さと合わず開閉のタイミングがずれてカクつくため、
+   grid-template-rows (0fr→1fr) 方式で「実高さぶんだけ」滑らかに開閉する。 */
 .answer {
-  max-height: 0;
+  display: grid;
+  grid-template-rows: 0fr;
   opacity: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease, opacity 0.4s ease;
+  transition: grid-template-rows 0.4s ease, opacity 0.4s ease;
 }
 
 .answer.open {
-  max-height: 360px;
+  grid-template-rows: 1fr;
   opacity: 1;
+}
+
+/* グリッドアイテム（クリップ層）: padding を持たせないことで 0fr のとき高さ0まで潰れる */
+.answerClip {
+  overflow: hidden;
+  min-height: 0;
 }
 
 .answerInner {

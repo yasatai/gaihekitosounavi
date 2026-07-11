@@ -8,7 +8,24 @@ export function Faq() {
   // -1 = all closed; first item open by default
   const [openIndex, setOpenIndex] = useState(0);
 
-  const toggle = (i: number) => setOpenIndex((cur) => (cur === i ? -1 : i));
+  // アコーディオン開閉時、上にある開いていた回答が閉じると
+  // 押した質問の位置がずれて「がくっ」と見える。
+  // 開閉アニメーションの間、押した質問行が画面上で動かないよう
+  // スクロール位置を毎フレーム補正して固定する（自動で閉じる挙動は維持）。
+  const toggle = (i: number, btn: HTMLElement) => {
+    const anchorTop = btn.getBoundingClientRect().top;
+    setOpenIndex((cur) => (cur === i ? -1 : i));
+    const t0 = performance.now();
+    const pin = () => {
+      const delta = btn.getBoundingClientRect().top - anchorTop;
+      if (delta !== 0) {
+        window.scrollBy({ top: delta, left: 0, behavior: 'instant' });
+      }
+      // CSS の transition (0.4s) が終わるまで追従する
+      if (performance.now() - t0 < 500) requestAnimationFrame(pin);
+    };
+    requestAnimationFrame(pin);
+  };
 
   return (
     <section id="faq-link" className="section">
@@ -23,7 +40,7 @@ export function Faq() {
                   type="button"
                   className={styles.row}
                   aria-expanded={open}
-                  onClick={() => toggle(i)}
+                  onClick={(e) => toggle(i, e.currentTarget)}
                 >
                   <span className={styles.question}>
                     <span className={styles.qMark}>Q</span>
@@ -32,11 +49,13 @@ export function Faq() {
                   <span className={styles.sign}>{open ? '−' : '＋'}</span>
                 </button>
                 <div className={`${styles.answer} ${open ? styles.open : ''}`}>
-                  <div className={styles.answerInner}>
-                    <span className={styles.aMark}>A</span>
-                    <span>
-                      <Ja>{item.a}</Ja>
-                    </span>
+                  <div className={styles.answerClip}>
+                    <div className={styles.answerInner}>
+                      <span className={styles.aMark}>A</span>
+                      <span>
+                        <Ja>{item.a}</Ja>
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
