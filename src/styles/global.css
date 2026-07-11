@@ -94,6 +94,11 @@ body {
   text-wrap: balance;
 }
 
+/* 本文は最終行が1〜数文字だけ残る「取り残し」を避ける（対応ブラウザ、未対応は通常折返し）。 */
+:where(p, li, dd, figcaption, blockquote) {
+  text-wrap: pretty;
+}
+
 /* PC幅前提で入れた手動改行 <br class="pcbr"> は、モバイルでは不自然になるため無効化し、
    文節単位の自動折り返しに任せる。 */
 @media (max-width: 599px) {

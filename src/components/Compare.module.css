@@ -42,6 +42,11 @@
   line-height: 1.9;
 }
 
+/* 引用句「何が含まれているか」を語の途中で改行させない（「何が だけ行末に残さない）。 */
+.nowrap {
+  white-space: nowrap;
+}
+
 /* ---- comparison card ---- */
 .card {
   background: #fff;
@@ -253,10 +258,10 @@
 }
 
 /* スマホでは見出しが大きすぎて「ます」だけ行末に泣き別れるため、
-   少し小さくして文節が1行に収まりやすくする（改行は自動＋balanceに任せる）。 */
+   画面幅に応じて縮小し（360px級でも文節が収まる）、改行は自動＋balanceに任せる。 */
 @media (max-width: 599px) {
   .title {
-    font-size: 26px;
+    font-size: clamp(20px, 6vw, 26px);
     line-height: 1.6;
   }
 }

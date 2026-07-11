@@ -326,6 +326,14 @@
     text-shadow: 0 2px 22px rgba(4, 12, 24, 0.5);
   }
 
+  /* 360〜400px級では 44px 相当だと「外壁塗装を成功へ。」が2行に割れて4行になるため、
+     画面幅に応じて少し縮小し、PCと同じ3行（信頼できる/業者選びで、/外壁塗装を成功へ。）に収める。 */
+  @media (max-width: 419px) {
+    .title {
+      font-size: clamp(30px, 9.2vw, 40px);
+    }
+  }
+
   .title em {
     background: linear-gradient(180deg, #f4dda2 0%, #dfbc72 52%, #c29a45 100%);
     -webkit-background-clip: text;

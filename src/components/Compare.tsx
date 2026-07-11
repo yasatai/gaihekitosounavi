@@ -20,7 +20,9 @@ export function Compare() {
             正しいか分かりにくいことがあります
           </h2>
           <p className={styles.lead}>
-            外壁塗装は、総額だけでなく「何が含まれているか」で判断することが大切です。
+            外壁塗装は、総額だけでなく
+            <span className={styles.nowrap}>「何が含まれているか」</span>
+            で判断することが大切です。
           </p>
         </div>
 
