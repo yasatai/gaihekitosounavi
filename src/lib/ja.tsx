@@ -21,13 +21,31 @@ function getParser(): Promise<Parser> {
 // BudouX が形態素境界で割ってしまう複合語（塗り替え→塗り|替え 等）は、
 // 内部の境界(U+200B)を除去して1語として扱い、途中改行を防ぐ。
 // 変な改行が見つかったらここに語を足す。
-const NO_BREAK_WORDS = ['塗り替え', '仕上がり', '住まい', '見積もり', '「何が含まれているか」'];
+const NO_BREAK_WORDS = [
+  '塗り替え',
+  '仕上がり',
+  '住まい',
+  '見積もり',
+  'お問い合わせ',
+  '見えにくく',
+  '「何が含まれているか」',
+];
 function keepWordsTogether(s: string): string {
   for (const w of NO_BREAK_WORDS) {
     // 各文字の間に入りうる U+200B を許容してマッチし、綺麗な語に置換する
     const re = new RegExp([...w].join(`${ZWSP}?`), 'g');
     s = s.replace(re, w);
   }
+  // --- 禁則処理 ---
+  // 行頭に来てはいけない文字（閉じ括弧・句読点・長音等）の直前では改行させない
+  s = s.replace(new RegExp(`${ZWSP}(?=[”」』）)。、，．・ー〜→])`, 'g'), '');
+  // 行末に残ってはいけない文字（開き括弧）の直後では改行させない
+  s = s.replace(new RegExp(`(?<=[“「『（(])${ZWSP}`, 'g'), '');
+  // 数値レンジ（100〜160万円 等）は「〜」の前後で割らない。
+  // keep-all でも「〜+数字」間はブラウザ標準の改行可能位置なので、
+  // WORD JOINER(U+2060) を挿入して改行自体を禁止する。
+  s = s.replace(new RegExp(`(?<=〜)${ZWSP}`, 'g'), '');
+  s = s.replace(/〜(?=[0-9０-９])/g, '〜⁠');
   return s;
 }
 

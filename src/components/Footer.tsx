@@ -1,4 +1,5 @@
 import { LogoMarkLight } from './Icons';
+import { Ja } from '../lib/ja';
 import styles from './Footer.module.css';
 
 // ▼▼▼ リフォーム会社LALAのサイトURLをここに入力してください（例: 'https://lala-reform.com/'）▼▼▼
@@ -60,8 +61,13 @@ export function Footer() {
             target="_blank"
             rel="noreferrer"
           >
-            <span className={styles.lalaMain}>塗装以外のリフォームはこちら</span>
-            <span className={styles.lalaSub}>関連会社・リフォームのLALA →</span>
+            <span className={styles.lalaMain}>
+              <Ja>塗装以外のリフォームはこちら</Ja>
+            </span>
+            <span className={styles.lalaSub}>
+              {/* 矢印だけが次行に落ちないよう nbsp で連結 */}
+              関連会社・リフォームのLALA{' →'}
+            </span>
           </a>
         </div>
       </div>

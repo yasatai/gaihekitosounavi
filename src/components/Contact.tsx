@@ -160,7 +160,7 @@ export function Contact() {
                 >
                   プライバシーポリシー
                 </a>
-                に同意する
+                <Ja>に同意する</Ja>
               </span>
             </label>
 
@@ -171,10 +171,10 @@ export function Contact() {
               className={`${styles.primaryBtn} ${styles.submit}`}
               disabled={status === 'sending'}
             >
-              {status === 'sending' ? '送信中…' : 'この内容で無料相談する'}
+              {status === 'sending' ? '送信中…' : <Ja>この内容で無料相談する</Ja>}
             </button>
             <p className={styles.disclaimer}>
-              無理な営業・契約を迫ることはありません。お気軽にどうぞ。
+              <Ja>無理な営業・契約を迫ることはありません。お気軽にどうぞ。</Ja>
             </p>
           </form>
           )}

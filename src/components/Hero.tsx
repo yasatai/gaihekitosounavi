@@ -1,4 +1,5 @@
 import { IconCrown, IconGuarantee, IconFairPrice, IconFree, IconShield } from './Icons';
+import { Ja } from '../lib/ja';
 import styles from './Hero.module.css';
 
 const features = [
@@ -56,7 +57,9 @@ export function Hero() {
               最短
               <strong>30秒</strong>
             </span>
-            <span className={styles.ctaText}>無料で一括見積もりを依頼する</span>
+            <span className={styles.ctaText}>
+              <Ja>無料で一括見積もりを依頼する</Ja>
+            </span>
             <svg
               className={styles.ctaArrow}
               width="24"

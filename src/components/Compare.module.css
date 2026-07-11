@@ -265,3 +265,15 @@
     line-height: 1.6;
   }
 }
+
+/* 320px級の極小幅: パネル見出しが「理由が」だけで折れないよう少し縮小し、
+   チップ（塗料名・足場代など）は3列だと語が割れるため2列にする。 */
+@media (max-width: 359px) {
+  .panelTitle {
+    font-size: 20px;
+  }
+
+  .chips {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -65,10 +65,12 @@ export function Diagnosis() {
                 })}
               </div>
               <div className={styles.resultNote}>
-                ※あくまで目安です。正確な状態は無料診断でご確認いただけます。
+                <Ja>※あくまで目安です。正確な状態は無料診断でご確認いただけます。</Ja>
               </div>
               <a href="#contact-link" className={`${styles.primaryBtn} ${styles.toContact}`}>
-                この診断をもとに無料相談する →
+                {/* 矢印だけが次行に落ちないよう、直前を nbsp で連結 */}
+                <Ja>この診断をもとに無料相談する</Ja>
+                {' →'}
               </a>
             </div>
           )}

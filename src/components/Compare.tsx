@@ -92,7 +92,7 @@ export function Compare() {
 
         <div className={styles.ctaWrap} data-stage-item>
           <a href="#contact-link" className={styles.cta}>
-            無料で見積り内容を比較する
+            <Ja>無料で見積り内容を比較する</Ja>
           </a>
         </div>
       </div>
