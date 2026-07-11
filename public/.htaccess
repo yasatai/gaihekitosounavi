@@ -1,0 +1,99 @@
+# ============================================================
+#  外壁・屋根塗装ナビ  Apache 設定（XServer 用）
+#  public/ に置くと、ビルド時に dist/.htaccess として出力され、
+#  公開ルート（public_html）直下に配置されます。
+#  ドメイン非依存（%{HTTP_HOST} を使用）なので、
+#  ドメインは .env の VITE_SITE_URL 側で一元管理します。
+# ============================================================
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # --- 1) HTTPS へ統一（http → https, 301） ---
+  #     XServer は SSL 終端の都合で X-Forwarded-Proto も見ておくと確実。
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP:X-Forwarded-Proto} =http
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # --- 2) www なし（正規化: www.example.com → example.com, 301） ---
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+</IfModule>
+
+# --- ディレクトリの既定ドキュメント ---
+DirectoryIndex index.html
+
+# --- ディレクトリ一覧の表示を無効化 ---
+Options -Indexes
+
+# --- 文字コード（.htaccess等の誤検出を避けるためHTML/CSS/JSに明示） ---
+AddDefaultCharset UTF-8
+
+# ============================================================
+#  Gzip 圧縮
+# ============================================================
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/json application/xml
+  AddOutputFilterByType DEFLATE image/svg+xml application/rss+xml
+  AddOutputFilterByType DEFLATE font/ttf font/otf font/woff font/woff2
+</IfModule>
+
+# ============================================================
+#  ブラウザキャッシュ（Cache-Control）
+#  - HTML: 都度確認（デプロイ後すぐ反映されるように）
+#  - JS/CSS: Vite がハッシュ付きファイル名で出力するため長期キャッシュ
+#  - 画像/フォント/SVG: 差し替えがあるので中期キャッシュ
+# ============================================================
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # HTML は常に再検証
+  ExpiresByType text/html "access plus 0 seconds"
+
+  # ハッシュ付きの静的アセット（/assets/ 配下）は長期
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+
+  # 画像・フォント・SVG は中期（差し替え時はファイル更新で反映）
+  ExpiresByType image/jpeg "access plus 7 days"
+  ExpiresByType image/png "access plus 7 days"
+  ExpiresByType image/webp "access plus 7 days"
+  ExpiresByType image/svg+xml "access plus 7 days"
+  ExpiresByType image/x-icon "access plus 30 days"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+
+  # XML（sitemap等）
+  ExpiresByType application/xml "access plus 1 day"
+</IfModule>
+
+<IfModule mod_headers.c>
+  # HTML は都度確認（キャッシュに古いページを残さない）
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+
+  # ハッシュ付きアセットは不変扱い（Viteの /assets/ 配下）
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # --- セキュリティ関連ヘッダ ---
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# ============================================================
+#  ドットファイル等へのアクセス禁止（.env, .htaccess など）
+# ============================================================
+<FilesMatch "^\.(?!well-known)">
+  Require all denied
+</FilesMatch>
+
+# --- 404 ページ（必要に応じてトップへ誘導したい場合は下行を有効化） ---
+# ErrorDocument 404 /index.html
