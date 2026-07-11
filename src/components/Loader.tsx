@@ -15,6 +15,12 @@ export function Loader() {
   useLayoutEffect(() => {
     const root = document.documentElement;
     root.classList.add('is-loading');
+    // ここで確実に manual にしておくと、ブラウザがリロード時に前回位置へ復元しないので、
+    // そもそも復元→Heroへスクロールという動き自体が起きない（Heroが最初から表示される）。
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 
     const reveal = () => {
       root.classList.add('is-loaded');
@@ -24,10 +30,9 @@ export function Loader() {
     const finish = () => {
       root.classList.remove('is-loading');
       reveal();
-      // コンテンツの高さが確定したこの時点で先頭へ固定し、
-      // ブラウザによるスクロール位置の復元（Hero以外へ戻る）を打ち消す。
-      window.scrollTo(0, 0);
-      requestAnimationFrame(() => window.scrollTo(0, 0));
+      // コンテンツの高さが確定したこの時点で先頭へ固定（アニメーションなし）。
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      requestAnimationFrame(() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' }));
       setDone(true);
     };
 

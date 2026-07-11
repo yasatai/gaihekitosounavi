@@ -11,10 +11,10 @@ if ('scrollRestoration' in history) {
 if (window.location.hash) {
   history.replaceState(null, '', window.location.pathname + window.location.search);
 }
-const scrollToHero = () => window.scrollTo(0, 0);
+// behavior:'instant' で、CSSの scroll-behavior:smooth を無視して“アニメーションなし”で先頭へ。
+// （復元位置からHeroへスーッとスクロールするのではなくHeroを最初から表示する）
+const scrollToHero = () => window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 scrollToHero();
-// コンテンツの高さが確定した後にブラウザが位置を復元しようとするため、
-// 読み込み完了・bfcache復帰のタイミングでも先頭へ戻す。
 window.addEventListener('load', scrollToHero);
 window.addEventListener('pageshow', scrollToHero);
 
