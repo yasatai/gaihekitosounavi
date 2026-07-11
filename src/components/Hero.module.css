@@ -4,7 +4,8 @@
   overflow: hidden;
   background-color: #f6faff;
   display: flex;
-  align-items: center;
+  /* 内容が高いと中央寄せでは下端(CTA・注記)が画面外に切れるため上寄せにする */
+  align-items: flex-start;
   /* 最初はHeroのみが画面いっぱいに表示されるよう全画面高に */
   min-height: 100vh;
   min-height: 100svh;
@@ -41,7 +42,8 @@
   z-index: 2;
   width: 100%;
   /* Heroは中央寄せ(max-width)をやめて全幅を使い、内容を左に寄せる */
-  padding: clamp(20px, 3vw, 44px) clamp(22px, 4vw, 52px);
+  /* 上寄せにしたので、上端に程よい余白を取りつつ全体を上に見せる */
+  padding: clamp(28px, 4.5vh, 60px) clamp(22px, 4vw, 52px) clamp(20px, 3vw, 44px);
 }
 
 /* 内容は左カラムに寄せる（Heroは横幅を広めに使う） */
