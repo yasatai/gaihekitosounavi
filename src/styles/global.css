@@ -297,6 +297,18 @@ a {
     url('/reasons.jpg');
 }
 
+/* 施工事例(WORKS): 専用の背景写真（塗り壁テクスチャ）に差し替え。 */
+#sekou-link.is-paint::before {
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(240, 248, 255, 0.4) 0%,
+      rgba(240, 248, 255, 0.26) 45%,
+      rgba(240, 248, 255, 0.48) 100%
+    ),
+    url('/works-bg.jpg');
+}
+
 /* モバイルは縦長画面で cover だと大きくトリミングされ過ぎるため、
    画像を「引き」にして全体を見せる（横幅に合わせ、余白は空色で補完）。 */
 @media (max-width: 599px) {
