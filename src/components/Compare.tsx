@@ -16,7 +16,7 @@ export function Compare() {
           <div className={styles.eyebrow}>REASON — 比較が必要な理由</div>
           <h2 className={styles.title}>
             1社だけでは、見積りの<em>“中身”</em>が
-            <br />
+            <br className="pcbr" />
             正しいか分かりにくいことがあります
           </h2>
           <p className={styles.lead}>

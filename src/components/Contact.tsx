@@ -60,7 +60,8 @@ export function Contact() {
           <p className={styles.introLead}>
             お見積り・ご相談は無料です。
             <br />
-            下記フォームからお気軽にお問い合わせください。
+            下記フォームからお気軽に
+            <span className={styles.nowrap}>お問い合わせください。</span>
           </p>
         </div>
 

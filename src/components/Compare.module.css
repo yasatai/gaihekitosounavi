@@ -251,3 +251,12 @@
     margin: -4px auto;
   }
 }
+
+/* スマホでは見出しが大きすぎて「ます」だけ行末に泣き別れるため、
+   少し小さくして文節が1行に収まりやすくする（改行は自動＋balanceに任せる）。 */
+@media (max-width: 599px) {
+  .title {
+    font-size: 26px;
+    line-height: 1.6;
+  }
+}

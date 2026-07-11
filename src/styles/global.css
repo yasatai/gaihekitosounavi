@@ -81,11 +81,25 @@ body {
 }
 
 /* 日本語の本文・見出しを文節単位で折り返す（単語の途中で改行されないように）。
-   overflow-wrap で、1文節が幅を超える場合ははみ出さずに折り返す。
+   overflow-wrap: break-word は「1文節が行幅を超える場合のみ」最終手段として折り返すので、
+   auto-phrase の文節区切りを邪魔しない（anywhere だと毎文字で改行され、お問い/合わせ 等に割れる）。
    :where() で詳細度0にし、各モジュールの指定を邪魔しない。未対応ブラウザは通常改行にフォールバック。 */
 :where(p, h1, h2, h3, h4, li, dd, figcaption, blockquote) {
   word-break: auto-phrase;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+}
+
+/* 見出しは行の長さをそろえて（対応ブラウザ）、行末で1〜2文字だけ泣き別れるのを防ぐ。 */
+:where(h1, h2, h3) {
+  text-wrap: balance;
+}
+
+/* PC幅前提で入れた手動改行 <br class="pcbr"> は、モバイルでは不自然になるため無効化し、
+   文節単位の自動折り返しに任せる。 */
+@media (max-width: 599px) {
+  .pcbr {
+    display: none;
+  }
 }
 
 a {
