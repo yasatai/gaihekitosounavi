@@ -5,8 +5,10 @@ import type { Parser } from 'budoux';
 // 語の途中改行を防ぐ（CSS の word-break: auto-phrase は Chromium 限定のため）。
 //
 // モデルが大きいので budoux は動的 import で別チャンク化し、初期表示（LCP）を軽く保つ。
-// 適用対象（お客様の声・診断結果）はファーストビュー外なので、
+// 適用対象（お客様の声・診断結果など）はファーストビュー外なので、
 // 読み込み前は通常改行、読み込み後に文節改行へ切り替わる（利用者には見えない）。
+
+const ZWSP = '​';
 
 let parserPromise: Promise<Parser> | null = null;
 function getParser(): Promise<Parser> {
@@ -14,6 +16,19 @@ function getParser(): Promise<Parser> {
     parserPromise = import('budoux').then((m) => m.loadDefaultJapaneseParser());
   }
   return parserPromise;
+}
+
+// BudouX が形態素境界で割ってしまう複合語（塗り替え→塗り|替え 等）は、
+// 内部の境界(U+200B)を除去して1語として扱い、途中改行を防ぐ。
+// 変な改行が見つかったらここに語を足す。
+const NO_BREAK_WORDS = ['塗り替え', '仕上がり', '住まい', '見積もり', '「何が含まれているか」'];
+function keepWordsTogether(s: string): string {
+  for (const w of NO_BREAK_WORDS) {
+    // 各文字の間に入りうる U+200B を許容してマッチし、綺麗な語に置換する
+    const re = new RegExp([...w].join(`${ZWSP}?`), 'g');
+    s = s.replace(re, w);
+  }
+  return s;
 }
 
 const cache = new Map<string, string>();
@@ -34,7 +49,7 @@ export function Ja({ children }: { children: string }) {
     }
     let alive = true;
     getParser().then((parser) => {
-      const v = parser.parse(children).join('​');
+      const v = keepWordsTogether(parser.parse(children).join(ZWSP));
       cache.set(children, v);
       if (alive) setSegmented(v);
     });

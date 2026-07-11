@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { SectionHeading } from './SectionHeading';
 import { faqItems } from '../data/faq';
+import { Ja } from '../lib/ja';
 import styles from './Faq.module.css';
 
 export function Faq() {
@@ -26,14 +27,16 @@ export function Faq() {
                 >
                   <span className={styles.question}>
                     <span className={styles.qMark}>Q</span>
-                    {item.q}
+                    <Ja>{item.q}</Ja>
                   </span>
                   <span className={styles.sign}>{open ? '−' : '＋'}</span>
                 </button>
                 <div className={`${styles.answer} ${open ? styles.open : ''}`}>
                   <div className={styles.answerInner}>
                     <span className={styles.aMark}>A</span>
-                    <span>{item.a}</span>
+                    <span>
+                      <Ja>{item.a}</Ja>
+                    </span>
                   </div>
                 </div>
               </div>

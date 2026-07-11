@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import type { PlaceKey } from '../types';
+import { Ja } from '../lib/ja';
 import styles from './Contact.module.css';
 
 const places: PlaceKey[] = ['屋根塗装', '外壁塗装', '屋根＋外壁'];
@@ -58,10 +59,9 @@ export function Contact() {
           <div className={styles.eyebrow}>CONTACT</div>
           <h2 className={styles.title}>無料相談</h2>
           <p className={styles.introLead}>
-            お見積り・ご相談は無料です。
+            <Ja>お見積り・ご相談は無料です。</Ja>
             <br />
-            下記フォームからお気軽に
-            <span className={styles.nowrap}>お問い合わせください。</span>
+            <Ja>下記フォームからお気軽にお問い合わせください。</Ja>
           </p>
         </div>
 
@@ -71,9 +71,9 @@ export function Contact() {
               <div className={styles.successMark}>✓</div>
               <h3 className={styles.successTitle}>お問い合わせありがとうございます</h3>
               <p className={styles.successText}>
-                内容を確認のうえ、担当者よりご連絡いたします。
+                <Ja>内容を確認のうえ、担当者よりご連絡いたします。</Ja>
                 <br />
-                この時点では、工事契約は成立していません。
+                <Ja>この時点では、工事契約は成立していません。</Ja>
               </p>
             </div>
           ) : (

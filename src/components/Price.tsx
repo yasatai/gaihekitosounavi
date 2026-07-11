@@ -1,4 +1,5 @@
 import { SectionHeading } from './SectionHeading';
+import { Ja } from '../lib/ja';
 import styles from './Price.module.css';
 
 const estimateRows = [
@@ -21,9 +22,13 @@ export function Price() {
         <SectionHeading eyebrow="PRICE" title="塗装費用の目安" item />
         <div className={styles.wrap}>
         <div className={styles.callout} data-stage-item>
-          <h3 className={styles.calloutTitle}>知らないと数十万円損することもある塗装工事</h3>
+          <h3 className={styles.calloutTitle}>
+            <Ja>知らないと数十万円損することもある塗装工事</Ja>
+          </h3>
           <p className={styles.calloutBody}>
-            全塗装工事の相場は100〜160万円と言われています。しかし建物の大きさ・塗料・工事内容によって費用は大きく変わります。まずは一般的な費用の目安を知り、適正な工事価格の参考にしてください。
+            <Ja>
+              全塗装工事の相場は100〜160万円と言われています。しかし建物の大きさ・塗料・工事内容によって費用は大きく変わります。まずは一般的な費用の目安を知り、適正な工事価格の参考にしてください。
+            </Ja>
           </p>
         </div>
 
@@ -72,7 +77,7 @@ export function Price() {
         </div>
 
         <p className={styles.note} data-stage-item>
-          建物の状態やご予算に合わせて最適な塗料をご提案します。
+          <Ja>建物の状態やご予算に合わせて最適な塗料をご提案します。</Ja>
         </p>
         </div>
       </div>

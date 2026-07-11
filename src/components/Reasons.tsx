@@ -1,4 +1,5 @@
 import { IconAward, IconLocation, IconPhoto } from './Icons';
+import { Ja } from '../lib/ja';
 import styles from './Reasons.module.css';
 
 const reasons = [
@@ -41,7 +42,9 @@ export function Reasons() {
               </div>
               <h3 className={styles.title}>{r.title}</h3>
               <div className={styles.rule} />
-              <p className={styles.body}>{r.body}</p>
+              <p className={styles.body}>
+                <Ja>{r.body}</Ja>
+              </p>
             </div>
           ))}
         </div>

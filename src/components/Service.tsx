@@ -1,4 +1,5 @@
 import { IconDiagnose, IconCompare, IconEstimate } from './Icons';
+import { Ja } from '../lib/ja';
 import styles from './Service.module.css';
 
 const services = [
@@ -35,7 +36,9 @@ export function Service() {
               <div className={styles.iconBox}>{s.icon}</div>
               <h3 className={styles.title}>{s.title}</h3>
               <div className={styles.rule} />
-              <p className={styles.body}>{s.body}</p>
+              <p className={styles.body}>
+                <Ja>{s.body}</Ja>
+              </p>
             </div>
           ))}
         </div>

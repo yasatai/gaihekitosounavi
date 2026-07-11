@@ -1,4 +1,5 @@
 import { Reveal } from './Reveal';
+import { Ja } from '../lib/ja';
 
 interface SectionHeadingProps {
   eyebrow: string;
@@ -27,7 +28,9 @@ export function SectionHeading({
         {title}
       </h2>
       {note && (
-        <p style={{ margin: '12px 0 0', fontSize: 15.5, color: 'var(--text-muted)' }}>{note}</p>
+        <p style={{ margin: '12px 0 0', fontSize: 15.5, color: 'var(--text-muted)' }}>
+          <Ja>{note}</Ja>
+        </p>
       )}
     </>
   );

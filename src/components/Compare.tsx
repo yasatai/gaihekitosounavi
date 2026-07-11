@@ -1,3 +1,4 @@
+import { Ja } from '../lib/ja';
 import styles from './Compare.module.css';
 
 const badRows = [
@@ -15,14 +16,14 @@ export function Compare() {
         <div className={styles.head} data-stage-item>
           <div className={styles.eyebrow}>REASON — 比較が必要な理由</div>
           <h2 className={styles.title}>
-            1社だけでは、見積りの<em>“中身”</em>が
+            <Ja>1社だけでは、見積りの</Ja>
+            <em>“中身”</em>
+            <Ja>が</Ja>
             <br className="pcbr" />
-            正しいか分かりにくいことがあります
+            <Ja>正しいか分かりにくいことがあります</Ja>
           </h2>
           <p className={styles.lead}>
-            外壁塗装は、総額だけでなく
-            <span className={styles.nowrap}>「何が含まれているか」</span>
-            で判断することが大切です。
+            <Ja>外壁塗装は、総額だけでなく「何が含まれているか」で判断することが大切です。</Ja>
           </p>
         </div>
 
@@ -36,7 +37,7 @@ export function Compare() {
                 理由が分かりにくい
               </h3>
               <p className={styles.panelText}>
-                金額だけでは、工事内容や保証の差が見えにくくなります。
+                <Ja>金額だけでは、工事内容や保証の差が見えにくくなります。</Ja>
               </p>
               <div className={styles.quote}>
                 <div className={styles.quotePrice}>例：92万円</div>
@@ -69,9 +70,7 @@ export function Compare() {
                 納得して選びやすい
               </h3>
               <p className={`${styles.panelText} ${styles.panelTextGood}`}>
-                複数の見積りで、価格だけでなく
-                <br />
-                工事内容まで確認できます。
+                <Ja>複数の見積りで、価格だけでなく工事内容まで確認できます。</Ja>
               </p>
               <div className={styles.chips}>
                 {goodChips.map((c) => (
@@ -87,7 +86,7 @@ export function Compare() {
         <div className={styles.pointBar} data-stage-item>
           <span className={styles.pointTag}>POINT</span>
           <span className={styles.pointText}>
-            安い見積りが悪いわけではありません。大切なのは、金額と工事内容をセットで見比べることです。
+            <Ja>安い見積りが悪いわけではありません。大切なのは、金額と工事内容をセットで見比べることです。</Ja>
           </span>
         </div>
 

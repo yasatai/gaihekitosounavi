@@ -14,23 +14,24 @@ export function useHeroParallax() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const ctx = gsap.context(() => {
-      const mm = gsap.matchMedia();
-      mm.add('(min-width: 900px)', () => {
-        const hero = document.querySelector('[data-hero]');
-        const inner = document.querySelector('[data-hero-inner]');
-        if (!hero || !inner) return;
+      const hero = document.querySelector('[data-hero]');
+      const inner = document.querySelector('[data-hero-inner]');
+      if (!hero || !inner) return;
 
-        gsap.to(inner, {
-          yPercent: -14,
-          autoAlpha: 0.35,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: hero,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true,
-          },
-        });
+      // Heroは sticky で固定され、次セクションが上に重なってくる。
+      // その重なりが唐突に見えないよう、Heroの中身をスクロールに合わせて
+      // 上へドリフトさせつつフェードアウト（全画面幅）。covered直前に消えるので滑らか。
+      gsap.to(inner, {
+        yPercent: -12,
+        autoAlpha: 0,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: hero,
+          start: 'top top',
+          // Heroの下端が画面上端に来るまで（＝次セクションが覆い切るまで）にフェード完了
+          end: 'bottom top',
+          scrub: 0.4,
+        },
       });
     });
 
