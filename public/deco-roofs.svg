@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+  <style>
+    .travel  { stroke-dasharray: 80 520; animation: travel 5.5s linear infinite; }
+    .travel2 { stroke-dasharray: 80 520; animation: travel 7.5s linear infinite; }
+    @keyframes travel { to { stroke-dashoffset: -600; } }
+    @media (prefers-reduced-motion: reduce) {
+      .travel, .travel2 { animation: none; opacity: 0; }
+    }
+  </style>
+  <!-- 下段の家形（ネイビー） -->
+  <g fill="none" stroke-width="1.4" stroke-linejoin="round">
+    <g stroke="#15304d" stroke-opacity="0.08">
+      <path d="M-40 900 L-40 560 L120 430 L280 560 L280 900"/>
+      <path d="M240 900 L240 520 L430 360 L620 520 L620 900"/>
+      <path d="M580 900 L580 600 L720 480 L860 600 L860 900"/>
+      <path d="M1180 900 L1180 620 L1320 500 L1460 620 L1460 900"/>
+    </g>
+    <g class="travel" stroke="#2a5a86" stroke-opacity="0.30" stroke-linecap="round">
+      <path d="M-40 900 L-40 560 L120 430 L280 560 L280 900"/>
+      <path d="M240 900 L240 520 L430 360 L620 520 L620 900"/>
+      <path d="M580 900 L580 600 L720 480 L860 600 L860 900"/>
+      <path d="M1180 900 L1180 620 L1320 500 L1460 620 L1460 900"/>
+    </g>
+  </g>
+  <!-- 上段の家形（ゴールド） -->
+  <g fill="none" stroke-width="1.4" stroke-linejoin="round">
+    <g stroke="#b8923f" stroke-opacity="0.10">
+      <path d="M1010 240 L1120 150 L1230 240"/>
+      <path d="M1120 300 L1250 195 L1380 300"/>
+    </g>
+    <g class="travel2" stroke="#cba968" stroke-opacity="0.34" stroke-linecap="round">
+      <path d="M1010 240 L1120 150 L1230 240"/>
+      <path d="M1120 300 L1250 195 L1380 300"/>
+    </g>
+  </g>
+</svg>

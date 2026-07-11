@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+  <style>
+    .travel  { stroke-dasharray: 70 430; animation: travel 4.5s linear infinite; }
+    .travel2 { stroke-dasharray: 70 430; animation: travel 6.5s linear infinite; }
+    @keyframes travel { to { stroke-dashoffset: -500; } }
+    @media (prefers-reduced-motion: reduce) {
+      .travel, .travel2 { animation: none; opacity: 0; }
+    }
+  </style>
+  <!-- 左上（ゴールド） -->
+  <g stroke-width="1.4" stroke-linecap="round">
+    <g stroke="#cba968" stroke-opacity="0.13">
+      <line x1="-120" y1="120" x2="220" y2="-160"/>
+      <line x1="-120" y1="220" x2="320" y2="-160"/>
+      <line x1="-120" y1="320" x2="420" y2="-160"/>
+    </g>
+    <g class="travel" stroke="#e6d0a0" stroke-opacity="0.50">
+      <line x1="-120" y1="120" x2="220" y2="-160"/>
+      <line x1="-120" y1="220" x2="320" y2="-160"/>
+      <line x1="-120" y1="320" x2="420" y2="-160"/>
+    </g>
+  </g>
+  <!-- 右下（ホワイト） -->
+  <g stroke-width="1.4" stroke-linecap="round">
+    <g stroke="#ffffff" stroke-opacity="0.05">
+      <line x1="1220" y1="1060" x2="1560" y2="740"/>
+      <line x1="1120" y1="1060" x2="1560" y2="640"/>
+      <line x1="1020" y1="1060" x2="1560" y2="540"/>
+    </g>
+    <g class="travel2" stroke="#ffffff" stroke-opacity="0.28">
+      <line x1="1220" y1="1060" x2="1560" y2="740"/>
+      <line x1="1120" y1="1060" x2="1560" y2="640"/>
+      <line x1="1020" y1="1060" x2="1560" y2="540"/>
+    </g>
+  </g>
+</svg>

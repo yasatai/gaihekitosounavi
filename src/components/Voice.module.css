@@ -1,0 +1,87 @@
+.section {
+  /* 背景の写真は is-paint(::before) が敷く。写真が出ない環境でも Hero が透けないよう、
+     不透明な明色をフォールバックに置く。明るい背景なので文字は濃色。 */
+  background: var(--bg-soft);
+  color: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+
+.inner {
+  position: relative;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: clamp(20px, 2.4vw, 32px);
+}
+
+/* 枠なし: 背景写真の上に内容だけを配置 */
+.card {
+  color: var(--navy);
+  padding: 4px clamp(6px, 1vw, 14px);
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.avatar {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.avatar svg {
+  width: 28px;
+  height: 28px;
+}
+
+.tag {
+  background: var(--bg-icon);
+  color: var(--navy);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 13px;
+  border-radius: 999px;
+}
+
+.title {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20.5px;
+  color: var(--navy);
+  line-height: 1.6;
+}
+
+.meta {
+  font-size: 13px;
+  color: var(--text-faint);
+  margin-bottom: 14px;
+}
+
+.body {
+  margin: 0 0 16px;
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.9;
+}
+
+.footer {
+  display: flex;
+  gap: 20px;
+  border-top: 1px solid #eef3f6;
+  padding-top: 16px;
+  font-size: 13px;
+  color: var(--text-2);
+}

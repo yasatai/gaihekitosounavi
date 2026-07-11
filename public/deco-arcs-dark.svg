@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+  <style>
+    .travel  { stroke-dasharray: 90 460; animation: travel 5s linear infinite; }
+    .travel2 { stroke-dasharray: 90 460; animation: travel 7s linear infinite; }
+    @keyframes travel { to { stroke-dashoffset: -550; } }
+    @media (prefers-reduced-motion: reduce) {
+      .travel, .travel2 { animation: none; opacity: 0; }
+    }
+  </style>
+  <!-- 右上（ゴールド） -->
+  <g fill="none" stroke-width="1.4">
+    <g stroke="#cba968" stroke-opacity="0.14">
+      <circle cx="1440" cy="0" r="200"/>
+      <circle cx="1440" cy="0" r="320"/>
+      <circle cx="1440" cy="0" r="440"/>
+      <circle cx="1440" cy="0" r="560"/>
+    </g>
+    <g class="travel" stroke="#e6d0a0" stroke-opacity="0.55">
+      <circle cx="1440" cy="0" r="200"/>
+      <circle cx="1440" cy="0" r="320"/>
+      <circle cx="1440" cy="0" r="440"/>
+      <circle cx="1440" cy="0" r="560"/>
+    </g>
+  </g>
+  <!-- 左下（ホワイト） -->
+  <g fill="none" stroke-width="1.4">
+    <g stroke="#ffffff" stroke-opacity="0.06">
+      <circle cx="0" cy="900" r="180"/>
+      <circle cx="0" cy="900" r="300"/>
+      <circle cx="0" cy="900" r="420"/>
+    </g>
+    <g class="travel2" stroke="#ffffff" stroke-opacity="0.30">
+      <circle cx="0" cy="900" r="180"/>
+      <circle cx="0" cy="900" r="300"/>
+      <circle cx="0" cy="900" r="420"/>
+    </g>
+  </g>
+</svg>

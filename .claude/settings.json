@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash('/c/Program Files \\(x86\\)/Microsoft/Edge/Application/msedge.exe' --headless --disable-gpu --hide-scrollbars --run-all-compositor-stages-before-draw --virtual-time-budget=6000 --window-size=390,3600 --screenshot=C:/Users/taichi/AppData/Local/Temp/claude/c--00----07-----------web/d228ca6e-37f8-406b-9b0c-0a4f50b71e94/scratchpad/mobile-390.png http://localhost:5175/)",
+      "Bash('/c/Program Files \\(x86\\)/Microsoft/Edge/Application/msedge.exe' --headless --disable-gpu --hide-scrollbars --virtual-time-budget=6000 --window-size=768,4200 --screenshot=C:/Users/taichi/AppData/Local/Temp/claude/c--00----07-----------web/d228ca6e-37f8-406b-9b0c-0a4f50b71e94/scratchpad/tablet-768.png http://localhost:5175/)",
+      "Bash('/c/Program Files \\(x86\\)/Microsoft/Edge/Application/msedge.exe' --headless --disable-gpu --hide-scrollbars --virtual-time-budget=6000 --window-size=360,3900 --screenshot=C:/Users/taichi/AppData/Local/Temp/claude/c--00----07-----------web/d228ca6e-37f8-406b-9b0c-0a4f50b71e94/scratchpad/mobile-360.png http://localhost:5175/)",
+      "Bash('/c/Program Files \\(x86\\)/Microsoft/Edge/Application/msedge.exe' --headless --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --virtual-time-budget=6000 --window-size=390,760 --screenshot=C:/Users/taichi/AppData/Local/Temp/claude/c--00----07-----------web/d228ca6e-37f8-406b-9b0c-0a4f50b71e94/scratchpad/hero-390-hd.png http://localhost:5175/)",
+      "Bash('/c/Program Files \\(x86\\)/Microsoft/Edge/Application/msedge.exe' --headless --disable-gpu --no-first-run --user-data-dir=C:/Users/taichi/AppData/Local/Temp/claude/c--00----07-----------web/d228ca6e-37f8-406b-9b0c-0a4f50b71e94/scratchpad/edgeprof1 --disk-cache-size=1 --force-device-scale-factor=2 --hide-scrollbars --virtual-time-budget=7000 --window-size=390,760 --screenshot=C:/Users/taichi/AppData/Local/Temp/claude/c--00----07-----------web/d228ca6e-37f8-406b-9b0c-0a4f50b71e94/scratchpad/hero-390-v2.png http://localhost:5175/?nocache=1)"
+    ]
+  }
+}

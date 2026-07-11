@@ -1,0 +1,378 @@
+/* ===== Design tokens ===== */
+:root {
+  /* brand */
+  --navy: #15304d;
+  --navy-2: #1f436a;
+  --navy-3: #2a5a86;
+  --navy-deep: #0f2236;
+  --gold: #b8923f;
+  --gold-light: #cba968;
+
+  /* text */
+  --ink: #15304d;
+  --text: #56707d;
+  --text-2: #3a5876;
+  --text-muted: #7e93a8;
+  --text-faint: #9bb0c4;
+
+  /* surfaces */
+  --bg: #fff;
+  --bg-soft: #f5f8fb;
+  --bg-icon: #eef3f8;
+
+  /* lines */
+  --line: #e7edf3;
+  --line-2: #eef2f6;
+  --line-input: #dbe3ea;
+
+  /* misc */
+  --danger: #c04545;
+
+  /* fonts */
+  --font-body: 'Noto Sans JP', sans-serif;
+  --font-display: 'Shippori Mincho', serif;
+  --font-latin: 'Cormorant Garamond', serif;
+
+  /* layout */
+  --maxw: 1140px;
+  --shell-x: clamp(20px, 5vw, 40px);
+  --section-y: clamp(56px, 8vw, 100px);
+}
+
+/* ===== Opening animation: lock scroll while the curtain is up ===== */
+html.is-loading,
+html.is-loading body {
+  overflow: hidden;
+}
+
+/* Smooth section-to-section scrolling (nav links / scroll cue) */
+html {
+  scroll-padding-top: 72px;
+  /* Always reserve the scrollbar gutter so locking scroll during the opening
+     animation doesn't change the layout width (no left-shift when Hero appears). */
+  scrollbar-gutter: stable;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not(.is-loading) {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ===== Reset ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--bg);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 日本語の本文・見出しを文節単位で折り返す（単語の途中で改行されないように）。
+   overflow-wrap で、1文節が幅を超える場合ははみ出さずに折り返す。
+   :where() で詳細度0にし、各モジュールの指定を邪魔しない。未対応ブラウザは通常改行にフォールバック。 */
+:where(p, h1, h2, h3, h4, li, dd, figcaption, blockquote) {
+  word-break: auto-phrase;
+  overflow-wrap: anywhere;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--navy);
+  color: #fff;
+}
+
+/* ===== Shared layout helpers ===== */
+.shell {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding-left: var(--shell-x);
+  padding-right: var(--shell-x);
+}
+
+.section {
+  padding-top: var(--section-y);
+  padding-bottom: var(--section-y);
+}
+
+/* ===== Section heading ===== */
+.eyebrow {
+  font-family: var(--font-latin);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--gold);
+  letter-spacing: 0.3em;
+}
+
+.heading {
+  margin: 10px 0 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(31px, 4.8vw, 50px);
+  color: var(--navy);
+  letter-spacing: 0.03em;
+}
+
+.heading-block {
+  text-align: center;
+  margin-bottom: clamp(36px, 5vw, 56px);
+}
+
+/* ===== Full-screen background-image stage (useStages / useHorizontalCases) ===== */
+.is-stage {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--bg-soft);
+  /* 明るいセクションの背景：ブランドカラーの柔らかな陰影（ベクター装飾 --stage-deco を活かすため薄め） */
+  --stage-scrim:
+    radial-gradient(60% 48% at 88% 6%, rgba(184, 146, 63, 0.07) 0%, transparent 66%),
+    radial-gradient(55% 55% at 4% 96%, rgba(21, 48, 77, 0.06) 0%, transparent 70%);
+}
+
+/* Non-pinned stages size to their content (with padding) so short sections
+   don't leave a full-screen void. Pinned / marquee stages keep min-height:100vh. */
+.is-stage-auto {
+  min-height: 0;
+}
+
+/* コンテンツ主体（本文・表）のセクションでは、装飾の線が文字に重ならないよう、
+   中央（本文の裏）を背景色でフェードさせて装飾を外周・余白だけに残す。
+   スクリムは装飾の上に描かれるため、本文エリアの線だけが消える（プレーン部分は無変化）。 */
+.is-stage-auto:not(.is-stage-dark),
+.is-stage-cases {
+  --stage-scrim:
+    radial-gradient(72% 80% at 50% 50%, var(--bg-soft) 0%, var(--bg-soft) 34%, rgba(245, 248, 251, 0) 80%),
+    radial-gradient(60% 48% at 92% 4%, rgba(184, 146, 63, 0.07) 0%, transparent 60%),
+    radial-gradient(55% 55% at 4% 98%, rgba(21, 48, 77, 0.06) 0%, transparent 66%);
+}
+
+/* 背景写真ステージ（例: 築年数診断）: 装飾スクリムではなく、
+   写真を活かしつつ文字とカードが読みやすい柔らかな白のオーバーレイに差し替える。
+   （上の .is-stage-auto ルールより後ろ＋同等以上の詳細度で確実に上書き） */
+/* 淡いグレー＋やわらかな光（サービス紹介）: 少し深めのグレー地に、中央の白い光と
+   ブランドの淡いゴールド/ネイビーの発光で奥行きを出す。 */
+.is-stage.is-stage-soft {
+  background-color: #eaeef4;
+  --stage-scrim:
+    radial-gradient(78% 62% at 50% 32%, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.4) 46%, rgba(255, 255, 255, 0) 74%),
+    radial-gradient(46% 40% at 88% 6%, rgba(184, 146, 63, 0.09) 0%, transparent 55%),
+    radial-gradient(50% 46% at 6% 96%, rgba(42, 90, 134, 0.09) 0%, transparent 60%);
+}
+
+.is-stage.is-stage-photo {
+  --stage-scrim:
+    linear-gradient(
+      180deg,
+      rgba(245, 248, 251, 0.55) 0%,
+      rgba(245, 248, 251, 0.28) 38%,
+      rgba(245, 248, 251, 0.5) 100%
+    );
+}
+
+/* Pinned card stages: tighter heading→cards gap so the larger cards still fit
+   one screen. */
+.is-stage:not(.is-stage-auto):not(.is-stage-cases) .heading-block {
+  margin-bottom: clamp(20px, 3vh, 34px);
+}
+
+/* Dark-designed sections (Voice / Contact) keep light text — use a dark scrim. */
+.is-stage-dark {
+  background-color: var(--navy-deep);
+  --stage-scrim:
+    radial-gradient(58% 46% at 86% 4%, rgba(184, 146, 63, 0.12) 0%, transparent 66%),
+    radial-gradient(60% 60% at 2% 100%, rgba(42, 90, 134, 0.28) 0%, transparent 72%);
+}
+
+/* 背景なし（透明）のステージ。リビール等は活かしつつ、灰色の背景・陰影を消す。 */
+.is-stage.is-stage-plain {
+  background-color: transparent;
+}
+
+.is-stage.is-stage-plain::before {
+  display: none;
+}
+
+.is-stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  /* 上から: 陰影 → 背景写真 → ベクター装飾 */
+  background-image: var(--stage-scrim), var(--stage-bg, none), var(--stage-deco, none);
+  background-size: cover;
+  background-position: center;
+}
+
+/* ===== 共通の背景写真（Hero以降の全セクション） =====
+   各セクションは Hero と同じ全画面高。背景写真はビューポートに固定（background-attachment: fixed）
+   するので、スクロールしても背景は動かず「文字（内容）だけが入れ替わる」ように見える。
+   明るいセクションは白の薄いベールで文字を読みやすく、写真は柔らかく透けさせる。 */
+.is-stage.is-paint {
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+.is-stage.is-paint::before {
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(238, 246, 253, 0.66) 0%,
+      rgba(238, 246, 253, 0.5) 42%,
+      rgba(238, 246, 253, 0.7) 100%
+    ),
+    url('/section-bg.jpg');
+  background-size: cover, cover;
+  background-position: center, center;
+  background-attachment: fixed, fixed;
+}
+
+/* ダーク指定セクション（お客様の声・無料相談）は濃紺スクリムで白文字を読みやすく。 */
+.is-stage-dark.is-paint::before {
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(9, 22, 40, 0.86) 0%,
+      rgba(9, 22, 40, 0.78) 42%,
+      rgba(9, 22, 40, 0.92) 100%
+    ),
+    url('/section-bg.jpg');
+}
+
+/* Cases: content aligned to top, horizontal track scrolls sideways. */
+.is-stage-cases {
+  justify-content: center;
+}
+
+.is-stage-cases .cases-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.is-stage-cases .cases-track {
+  display: flex;
+  gap: clamp(18px, 2vw, 26px);
+  padding: 0 clamp(20px, 5vw, 60px);
+  width: max-content;
+}
+
+.is-stage-cases .cases-track > * {
+  flex: 0 0 auto;
+  width: clamp(300px, 40vw, 440px);
+}
+
+@media (max-width: 899px) {
+  .is-stage {
+    min-height: 0;
+  }
+
+  /* モバイルでもピン留めするシネマティック（サービス紹介）は全画面高でフィット */
+  .is-stage.is-stage-soft {
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+}
+
+/* ===== Heroをピン留め（固定）：スクロールすると次のセクションが上に重なって出る =====
+   Heroは sticky で画面に貼りつき、続くセクション群（.over-hero）が上に重なって
+   スクロールしていく。各セクションは不透明な背景写真（is-paint）で Hero を覆う。 */
+[data-hero] {
+  position: sticky;
+  top: 0;
+  z-index: 0;
+}
+
+.over-hero {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== Reveal on opening-curtain lift (driven by html.is-loaded) ===== */
+[data-reveal] {
+  opacity: 0;
+}
+
+html.is-loaded [data-reveal] {
+  animation: fadeUp 0.9s ease both;
+}
+
+html.is-loaded [data-reveal-delay] {
+  animation-duration: 1.2s;
+  animation-delay: 0.12s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+/* ===== Hero: すりガラスが晴れるように順次表示（useHeroReveal が .is-in を付与） ===== */
+[data-hero-reveal] {
+  opacity: 0;
+  filter: blur(16px);
+  transform: translateY(20px) scale(1.015);
+  transition:
+    opacity 0.85s ease,
+    filter 0.9s ease,
+    transform 0.9s cubic-bezier(0.22, 0.68, 0.16, 1);
+  will-change: opacity, filter, transform;
+}
+
+[data-hero-reveal].is-in {
+  opacity: 1;
+  filter: blur(0);
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-hero-reveal] {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ===== Keyframes ===== */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatRing {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}

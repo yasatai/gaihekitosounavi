@@ -1,0 +1,393 @@
+.hero {
+  position: relative;
+  color: var(--navy);
+  overflow: hidden;
+  background-color: #f6faff;
+  display: flex;
+  align-items: center;
+  /* 最初はHeroのみが画面いっぱいに表示されるよう全画面高に */
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+/* ===== 背景写真 ===== */
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url('/hero-pc.jpg');
+  background-size: cover;
+  background-position: right center;
+}
+
+/* 読みやすさスクリム（ホワイトアウト: 左を白く、右に写真の職人を見せる） */
+.bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* 左は白、画像の中央あたりから職人が見え始めるようフェード */
+  background: linear-gradient(
+    100deg,
+    rgba(246, 250, 255, 0.97) 0%,
+    rgba(246, 250, 255, 0.9) 26%,
+    rgba(246, 250, 255, 0.5) 44%,
+    rgba(246, 250, 255, 0.12) 56%,
+    rgba(246, 250, 255, 0) 66%
+  );
+}
+
+.inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  /* Heroは中央寄せ(max-width)をやめて全幅を使い、内容を左に寄せる */
+  padding: clamp(20px, 3vw, 44px) clamp(22px, 4vw, 52px);
+}
+
+/* 内容は左カラムに寄せる（Heroは横幅を広めに使う） */
+.content {
+  max-width: min(760px, 70%);
+}
+
+/* ===== eyebrow（王冠 + 英字） ===== */
+.eyebrow {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--gold);
+  margin-bottom: clamp(12px, 1.6vw, 18px);
+}
+
+.eyebrow > span {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-latin);
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  font-size: clamp(12px, 1.4vw, 15px);
+  white-space: nowrap;
+}
+
+.eyebrow > span::before,
+.eyebrow > span::after {
+  content: '';
+  height: 1px;
+  width: clamp(24px, 4vw, 52px);
+}
+
+.eyebrow > span::before {
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+
+.eyebrow > span::after {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+/* ===== 見出し ===== */
+.title {
+  margin: 0 0 clamp(14px, 1.8vw, 22px);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(40px, 6.4vw, 72px);
+  line-height: 1.28;
+  letter-spacing: 0.02em;
+  color: var(--navy);
+}
+
+.title em {
+  font-style: normal;
+  background: linear-gradient(180deg, #d0aa57 0%, #b8923f 55%, #997529 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ===== タグライン（枠付き） ===== */
+.tagline {
+  display: inline-block;
+  margin-bottom: clamp(14px, 1.8vw, 20px);
+  padding: 8px 16px;
+  border: 1px solid rgba(184, 146, 63, 0.7);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.5);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(15px, 1.8vw, 19px);
+  letter-spacing: 0.04em;
+  color: var(--navy);
+}
+
+.tagline em {
+  font-style: normal;
+  color: var(--gold);
+}
+
+/* ===== リード文 ===== */
+.lead {
+  margin: 0 0 clamp(16px, 2vw, 24px);
+  font-size: clamp(13px, 1.5vw, 15.5px);
+  line-height: 1.85;
+  color: var(--text-2);
+}
+
+/* ===== 特徴3点 ===== */
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(9px, 1.1vw, 15px);
+  margin-bottom: clamp(14px, 1.8vw, 22px);
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 1vw, 12px);
+  padding: clamp(11px, 1.3vw, 15px) clamp(10px, 1.2vw, 16px);
+  border: 1px solid rgba(184, 146, 63, 0.4);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 6px 18px rgba(21, 48, 77, 0.08);
+}
+
+.featureIcon {
+  flex: none;
+  display: flex;
+  color: var(--gold);
+}
+
+.featureText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+  min-width: 0;
+}
+
+.featureSub {
+  font-size: clamp(10.5px, 1.05vw, 12.5px);
+  color: var(--text-muted);
+}
+
+.featureMain {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(13px, 1.35vw, 16.5px);
+  color: var(--navy);
+  white-space: nowrap;
+}
+
+/* ===== CTA ボタン ===== */
+.cta {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.6vw, 22px);
+  width: 100%;
+  /* 特徴3点の行と同じ幅に合わせる（.content 幅いっぱい） */
+  padding: clamp(11px, 1.3vw, 15px) clamp(16px, 2vw, 26px);
+  border-radius: 12px;
+  background: linear-gradient(175deg, #f7e6b0 0%, #e8c877 48%, #d2ac59 100%);
+  box-shadow: 0 16px 34px rgba(150, 110, 40, 0.32);
+  text-decoration: none;
+  margin-bottom: clamp(12px, 1.6vw, 18px);
+  transition: transform 0.15s ease, filter 0.2s ease;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+}
+
+.ctaBadge {
+  flex: none;
+  width: clamp(48px, 5vw, 60px);
+  height: clamp(48px, 5vw, 60px);
+  border-radius: 50%;
+  background: #0a1a2e;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.ctaBadge strong {
+  font-size: clamp(14px, 1.6vw, 17px);
+}
+
+.ctaText {
+  flex: 1;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(16px, 2.1vw, 26px);
+  color: #0a1a2e;
+  letter-spacing: 0.02em;
+}
+
+.ctaArrow {
+  flex: none;
+  color: #0a1a2e;
+}
+
+/* ===== プライバシー注記 ===== */
+.privacy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: clamp(11px, 1.2vw, 13px);
+  color: var(--text-2);
+}
+
+.privacy svg {
+  flex: none;
+  color: var(--gold);
+}
+
+/* ===== タブレット以下: 内容カラムが狭くなるので特徴を縦型・CTAを1行に ===== */
+@media (max-width: 899px) {
+  .features {
+    gap: 8px;
+  }
+
+  .feature {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 12px 10px;
+  }
+
+  .featureSub,
+  .featureMain {
+    white-space: normal;
+    word-break: auto-phrase;
+  }
+
+  .cta {
+    gap: 12px;
+    padding: 12px 16px;
+  }
+
+  .ctaBadge {
+    width: 46px;
+    height: 46px;
+  }
+
+  .ctaText {
+    font-size: 16px;
+    letter-spacing: 0;
+  }
+}
+
+/* ===== 狭い画面(スマホ): 背景を縦画像にして縦積み ＋ 濃紺(ダーク)テーマ ===== */
+@media (max-width: 599px) {
+  .bg {
+    background-image: url('/hero-mobile.jpg');
+    background-position: center top;
+  }
+
+  /* 上に写真を見せ、下へ濃紺へフェード（ブラックアウト） */
+  .bg::after {
+    background: linear-gradient(
+      180deg,
+      rgba(10, 26, 46, 0.34) 0%,
+      rgba(10, 26, 46, 0.5) 28%,
+      rgba(10, 26, 46, 0.82) 56%,
+      rgba(10, 26, 46, 0.97) 74%,
+      #0a1a2e 88%
+    );
+  }
+
+  .inner {
+    padding-top: clamp(26px, 7vw, 40px);
+    /* 下部固定バー（無料相談）に注記が隠れないよう余白を確保 */
+    padding-bottom: 84px;
+  }
+
+  .content {
+    max-width: 100%;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    color: var(--gold-light);
+  }
+
+  .title {
+    color: #fff;
+    text-shadow: 0 2px 22px rgba(4, 12, 24, 0.5);
+  }
+
+  .title em {
+    background: linear-gradient(180deg, #f4dda2 0%, #dfbc72 52%, #c29a45 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .tagline {
+    color: #fff;
+    border-color: rgba(201, 162, 74, 0.6);
+    background: rgba(10, 26, 46, 0.35);
+  }
+
+  .tagline em {
+    color: var(--gold-light);
+  }
+
+  .lead {
+    color: #d5e0ec;
+  }
+
+  .feature {
+    border-color: rgba(201, 162, 74, 0.35);
+    background: rgba(8, 20, 36, 0.55);
+    box-shadow: none;
+  }
+
+  .featureIcon {
+    color: var(--gold-light);
+  }
+
+  .featureSub {
+    color: #b9c8d8;
+  }
+
+  .featureMain {
+    color: #fff;
+  }
+
+  .privacy {
+    color: #b9c8d8;
+  }
+
+  .privacy svg {
+    color: var(--gold-light);
+  }
+
+  /* CTAを1行に収める */
+  .cta {
+    gap: 10px;
+  }
+
+  .ctaBadge {
+    width: 44px;
+    height: 44px;
+  }
+
+  .ctaText {
+    font-size: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta {
+    transition: none;
+  }
+}

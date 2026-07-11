@@ -1,0 +1,76 @@
+.list {
+  max-width: 840px;
+  margin: 0 auto;
+  border-top: 1px solid var(--line);
+}
+
+.item {
+  border-bottom: 1px solid var(--line);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 6px;
+  cursor: pointer;
+  gap: 18px;
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  font: inherit;
+}
+
+.question {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--navy);
+  line-height: 1.5;
+}
+
+.qMark {
+  font-family: var(--font-latin);
+  font-weight: 700;
+  color: var(--gold);
+  font-size: 18px;
+}
+
+.sign {
+  color: var(--gold);
+  font-size: 24px;
+  font-weight: 300;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.answer {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+.answer.open {
+  max-height: 360px;
+  opacity: 1;
+}
+
+.answerInner {
+  display: flex;
+  gap: 12px;
+  padding: 0 6px 26px;
+  font-size: 15.5px;
+  color: var(--text);
+  line-height: 2;
+}
+
+.aMark {
+  font-family: var(--font-latin);
+  font-weight: 700;
+  color: var(--text-faint);
+  font-size: 18px;
+}

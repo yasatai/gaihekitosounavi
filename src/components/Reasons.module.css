@@ -1,0 +1,61 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(20px, 2.4vw, 32px);
+}
+
+/* 枠なし: 背景写真の上に内容だけを配置 */
+.card {
+  padding: 4px clamp(6px, 1vw, 14px);
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.iconCircle {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: var(--bg-icon);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconCircle svg {
+  width: 44px;
+  height: 44px;
+}
+
+.num {
+  font-family: var(--font-latin);
+  font-weight: 700;
+  font-size: 46px;
+  color: #e3eaf1;
+}
+
+.title {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 25px;
+  color: var(--navy);
+}
+
+.rule {
+  width: 42px;
+  height: 2px;
+  background: var(--gold);
+  margin-bottom: 18px;
+}
+
+.body {
+  margin: 0;
+  font-size: 15.5px;
+  color: var(--text);
+  line-height: 2;
+}

@@ -1,0 +1,85 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #15304d 0%, #1f436a 60%, #2a5a86 100%);
+  will-change: transform;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.mark {
+  margin-bottom: 22px;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.ja {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(20px, 4vw, 27px);
+  color: #fff;
+  letter-spacing: 0.12em;
+}
+
+.en {
+  font-family: var(--font-latin);
+  font-weight: 600;
+  font-size: clamp(10px, 2vw, 12px);
+  color: var(--gold-light);
+  letter-spacing: 0.34em;
+}
+
+.line {
+  width: clamp(110px, 26vw, 150px);
+  height: 2px;
+  margin-top: 20px;
+  background: var(--gold);
+  transform-origin: left center;
+}
+
+/* PC: make the opening much bolder. */
+@media (min-width: 768px) {
+  .mark {
+    margin-bottom: 36px;
+  }
+
+  .mark svg {
+    width: 118px;
+    height: 118px;
+  }
+
+  .brand {
+    gap: 14px;
+  }
+
+  .ja {
+    font-size: clamp(46px, 5.2vw, 68px);
+    letter-spacing: 0.16em;
+  }
+
+  .en {
+    font-size: 18px;
+    letter-spacing: 0.44em;
+  }
+
+  .line {
+    width: clamp(220px, 22vw, 320px);
+    height: 3px;
+    margin-top: 32px;
+  }
+}
