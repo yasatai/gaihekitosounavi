@@ -361,16 +361,110 @@ a {
     url('/contact.jpg');
 }
 
-/* モバイルは縦長画面で cover だと大きくトリミングされ過ぎるため、
-   画像を「引き」にして全体を見せる（横幅に合わせ、余白は空色で補完）。 */
+/* モバイルは縦長画面。各セクションに専用の縦長写真（1080x1440）を敷き、
+   cover で画面いっぱいに表示する。iOS等では background-attachment: fixed が
+   効かない/ちらつくため scroll に切り替える（ベールはPC版と同じ）。 */
 @media (max-width: 599px) {
+  #shindan-link.is-paint::before,
+  #service-link.is-paint::before,
+  #riyuu-link.is-paint::before,
+  #sekou-link.is-paint::before,
+  #koe-link.is-paint::before,
+  #meyasu-link.is-paint::before,
+  #faq-link.is-paint::before,
+  #contact-link.is-paint::before {
+    background-size: cover, cover;
+    background-position: center, center;
+    background-attachment: scroll, scroll;
+    background-repeat: no-repeat, no-repeat;
+  }
+
   #shindan-link.is-paint::before {
-    background-image: url('/diagnosis.jpg');
-    background-size: 100% auto;
-    background-position: top center;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-color: #d3e6fa;
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(240, 248, 255, 0.4) 0%,
+        rgba(240, 248, 255, 0.26) 45%,
+        rgba(240, 248, 255, 0.48) 100%
+      ),
+      url('/diagnosis-m.jpg');
+  }
+
+  #service-link.is-paint::before {
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(240, 248, 255, 0.4) 0%,
+        rgba(240, 248, 255, 0.26) 45%,
+        rgba(240, 248, 255, 0.48) 100%
+      ),
+      url('/service-m.jpg');
+  }
+
+  #riyuu-link.is-paint::before {
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(240, 248, 255, 0.4) 0%,
+        rgba(240, 248, 255, 0.26) 45%,
+        rgba(240, 248, 255, 0.48) 100%
+      ),
+      url('/reasons-m.jpg');
+  }
+
+  #sekou-link.is-paint::before {
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(240, 248, 255, 0.4) 0%,
+        rgba(240, 248, 255, 0.26) 45%,
+        rgba(240, 248, 255, 0.48) 100%
+      ),
+      url('/voice-m.jpg');
+  }
+
+  #koe-link.is-paint::before {
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(240, 248, 255, 0.4) 0%,
+        rgba(240, 248, 255, 0.26) 45%,
+        rgba(240, 248, 255, 0.48) 100%
+      ),
+      url('/works-bg-m.jpg');
+  }
+
+  #meyasu-link.is-paint::before {
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(240, 248, 255, 0.4) 0%,
+        rgba(240, 248, 255, 0.26) 45%,
+        rgba(240, 248, 255, 0.48) 100%
+      ),
+      url('/price-m.jpg');
+  }
+
+  #faq-link.is-paint::before {
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(240, 248, 255, 0.4) 0%,
+        rgba(240, 248, 255, 0.26) 45%,
+        rgba(240, 248, 255, 0.48) 100%
+      ),
+      url('/faq-m.jpg');
+  }
+
+  #contact-link.is-paint::before {
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(10, 18, 32, 0.5) 0%,
+        rgba(10, 18, 32, 0.3) 35%,
+        rgba(10, 18, 32, 0.42) 100%
+      ),
+      url('/contact-m.jpg');
   }
 }
 
