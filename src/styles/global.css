@@ -273,6 +273,19 @@ a {
     url('/diagnosis.jpg');
 }
 
+/* モバイルは縦長画面で cover だと大きくトリミングされ過ぎるため、
+   画像を「引き」にして全体を見せる（横幅に合わせ、余白は空色で補完）。 */
+@media (max-width: 599px) {
+  #shindan-link.is-paint::before {
+    background-image: url('/diagnosis.jpg');
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-color: #d3e6fa;
+  }
+}
+
 /* Cases: content aligned to top, horizontal track scrolls sideways. */
 .is-stage-cases {
   justify-content: center;
