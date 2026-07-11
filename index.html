@@ -9,9 +9,18 @@
   <!-- ===== SEO ===== -->
   <!-- ドメインはビルド時に環境変数 VITE_SITE_URL（.env）から %VITE_SITE_URL% が置換される -->
   <meta name="description" content="宮城県で評判の外壁塗装・屋根塗装業者を無料で一括比較。地元の優良業者だけを厳選紹介し、適正価格の見積もりを比較・検討できます。築年数かんたん診断や費用の目安も掲載。相談・見積もりは無料です。" />
-  <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="外壁塗装,屋根塗装,宮城,宮城県,塗装業者,見積もり,一括比較,相見積もり,塗り替え,費用" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <link rel="canonical" href="%VITE_SITE_URL%/" />
   <meta name="theme-color" content="#15304d" />
+
+  <!-- LCP最適化: ファーストビューの背景画像を先読み（Core Web Vitals対策） -->
+  <link rel="preload" as="image" href="/hero-pc.jpg" media="(min-width: 600px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="/hero-mobile.jpg" media="(max-width: 599px)" fetchpriority="high" />
+
+  <!-- アイコン / マニフェスト -->
+  <link rel="apple-touch-icon" href="/favicon.svg" />
+  <link rel="manifest" href="/site.webmanifest" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -21,6 +30,11 @@
   <meta property="og:description" content="宮城県で評判の外壁塗装・屋根塗装業者を無料で一括比較。地元の優良業者だけを厳選紹介し、適正価格の見積もりを比較・検討できます。" />
   <meta property="og:url" content="%VITE_SITE_URL%/" />
   <meta property="og:image" content="%VITE_SITE_URL%/hero-pc.jpg" />
+  <meta property="og:image:secure_url" content="%VITE_SITE_URL%/hero-pc.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1536" />
+  <meta property="og:image:height" content="1024" />
+  <meta property="og:image:alt" content="外壁塗装をする職人｜外壁・屋根塗装ナビ" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />

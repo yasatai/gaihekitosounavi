@@ -1,7 +1,11 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
+import { initAnalytics } from './analytics';
 import './styles/global.css';
+
+// Google Analytics 4（VITE_GA_ID が設定されているときだけ有効）
+initAnalytics();
 
 // ページを更新（リロード）したときは、前回のスクロール位置やアンカー(#...)へ戻さず、
 // 必ず先頭（Heroセクション）から表示する。

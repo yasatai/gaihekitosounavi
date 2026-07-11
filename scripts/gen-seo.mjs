@@ -65,4 +65,42 @@ if (!existsSync(dist)) {
 }
 writeFileSync(resolve(dist, 'sitemap.xml'), sitemap, 'utf8');
 writeFileSync(resolve(dist, 'robots.txt'), robots, 'utf8');
-console.log(`[gen-seo] sitemap.xml / robots.txt を生成しました（${SITE}）`);
+
+// --- トップページに FAQ構造化データ(FAQPage) と（任意で）Search Console認証タグを注入 ---
+const indexPath = resolve(dist, 'index.html');
+if (existsSync(indexPath)) {
+  let html = readFileSync(indexPath, 'utf8');
+  const inserts = [];
+
+  // FAQPage JSON-LD（faq.json を単一の情報源として生成）
+  const faqPath = resolve(root, 'src/data/faq.json');
+  if (existsSync(faqPath)) {
+    const faq = JSON.parse(readFileSync(faqPath, 'utf8'));
+    const faqLd = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faq.map((it) => ({
+        '@type': 'Question',
+        name: it.q,
+        acceptedAnswer: { '@type': 'Answer', text: it.a },
+      })),
+    };
+    inserts.push(
+      `<script type="application/ld+json">\n${JSON.stringify(faqLd)}\n</script>`
+    );
+  }
+
+  // Google Search Console のメタ認証（VITE_GSC_VERIFICATION が設定されていれば）
+  if (env.VITE_GSC_VERIFICATION) {
+    inserts.push(
+      `<meta name="google-site-verification" content="${env.VITE_GSC_VERIFICATION}" />`
+    );
+  }
+
+  if (inserts.length && html.includes('</head>')) {
+    html = html.replace('</head>', `  ${inserts.join('\n  ')}\n</head>`);
+    writeFileSync(indexPath, html, 'utf8');
+  }
+}
+
+console.log(`[gen-seo] sitemap.xml / robots.txt / FAQ構造化データ を生成しました（${SITE}）`);

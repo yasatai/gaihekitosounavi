@@ -1,0 +1,19 @@
+{
+  "name": "外壁・屋根塗装ナビ｜MIYAGI PAINTING NAVI",
+  "short_name": "塗装ナビ",
+  "description": "宮城県の外壁・屋根塗装業者を無料で一括比較",
+  "lang": "ja",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#15304d",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    }
+  ]
+}
