@@ -3,7 +3,7 @@ import { Ja } from '../lib/ja';
 import styles from './Footer.module.css';
 
 // ▼▼▼ リフォーム会社LALAのサイトURLをここに入力してください（例: 'https://lala-reform.com/'）▼▼▼
-const LALA_REFORM_URL = '';
+const LALA_REFORM_URL = 'https://lala-reform.com';
 
 export function Footer() {
   return (
@@ -56,7 +56,7 @@ export function Footer() {
         <div>
           <div className={styles.colTitle}>RELATED</div>
           <a
-            href={"https://lala-reform.com"}
+            href={LALA_REFORM_URL || '#'}
             className={styles.lala}
             target="_blank"
             rel="noreferrer"
