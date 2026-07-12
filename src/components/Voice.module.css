@@ -67,14 +67,16 @@
 
 .meta {
   font-size: 14px;
-  color: var(--text-2);
+  /* 塗り壁テクスチャの上でも読めるよう濃いネイビーに */
+  color: var(--navy-2);
   margin-bottom: 14px;
 }
 
 .body {
   margin: 0 0 16px;
   font-size: 15.5px;
-  color: var(--text-2);
+  /* 塗り壁テクスチャの上でも読めるよう濃いネイビーに */
+  color: var(--navy-2);
   line-height: 1.95;
 }
 
@@ -84,5 +86,5 @@
   border-top: 1px solid #eef3f6;
   padding-top: 16px;
   font-size: 14px;
-  color: var(--text-2);
+  color: var(--navy-2);
 }
