@@ -42,10 +42,7 @@
   line-height: 1.9;
 }
 
-/* 引用句「何が含まれているか」を語の途中で改行させない（「何が だけ行末に残さない）。 */
-.nowrap {
-  white-space: nowrap;
-}
+/* （旧 .nowrap は Ja(BudouX) 化に伴い削除。長い文字列への white-space:nowrap は使わない） */
 
 /* ---- comparison card ---- */
 .card {

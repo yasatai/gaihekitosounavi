@@ -30,6 +30,8 @@
   font-size: 18px;
   color: var(--navy);
   line-height: 1.5;
+  /* flex内の文字要素が縮めるように（はみ出し・詰まり防止） */
+  min-width: 0;
 }
 
 .qMark {

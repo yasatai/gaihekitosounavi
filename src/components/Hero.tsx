@@ -20,8 +20,13 @@ export function Hero() {
             <span>RELIABLE PAINTING PARTNER</span>
           </div>
 
+          {/* 改行位置はクラスで明示制御:
+              PC(600px〜): 信頼できる業者選びで / 外壁塗装を成功へ の2行
+              スマホ(〜599px): 信頼できる / 業者選びで / 外壁塗装を成功へ の3行固定 */}
           <h1 className={styles.title} data-hero-reveal>
-            信頼できる業者選びで
+            信頼できる
+            <br className="spbr" />
+            業者選びで
             <br />
             <em>外壁塗装</em>を成功へ
           </h1>
@@ -45,8 +50,12 @@ export function Hero() {
               <div key={f.main} className={styles.feature}>
                 <span className={styles.featureIcon}>{f.icon}</span>
                 <span className={styles.featureText}>
-                  <span className={styles.featureSub}>{f.sub}</span>
-                  <span className={styles.featureMain}>{f.main}</span>
+                  <span className={styles.featureSub}>
+                    <Ja>{f.sub}</Ja>
+                  </span>
+                  <span className={styles.featureMain}>
+                    <Ja>{f.main}</Ja>
+                  </span>
                 </span>
               </div>
             ))}

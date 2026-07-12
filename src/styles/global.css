@@ -107,11 +107,20 @@ body {
   overflow-wrap: anywhere;
 }
 
-/* PC幅前提で入れた手動改行 <br class="pcbr"> は、モバイルでは不自然になるため無効化し、
-   文節単位の自動折り返しに任せる。 */
+/* 手動改行はクラスで PC / スマホを切り替える:
+   .pcbr = PC専用改行（スマホでは無効化）
+   .spbr = スマホ専用改行（PCでは無効化） */
+.spbr {
+  display: none;
+}
+
 @media (max-width: 599px) {
   .pcbr {
     display: none;
+  }
+
+  .spbr {
+    display: inline;
   }
 }
 

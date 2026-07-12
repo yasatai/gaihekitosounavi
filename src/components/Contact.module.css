@@ -43,10 +43,7 @@
   line-height: 1.95;
 }
 
-/* 「お問い合わせください。」を語の途中で改行させない（お問い/合わせ の泣き別れ防止）。 */
-.nowrap {
-  white-space: nowrap;
-}
+/* （旧 .nowrap は Ja(BudouX) 化に伴い削除。長い文字列への white-space:nowrap は使わない） */
 
 .panel {
   background: #fff;

@@ -151,6 +151,8 @@
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.78);
   box-shadow: 0 6px 18px rgba(21, 48, 77, 0.08);
+  /* グリッドアイテムが中身より縮めるように（文字のはみ出し防止） */
+  min-width: 0;
 }
 
 .featureIcon {
@@ -176,12 +178,16 @@
   font-weight: 700;
   font-size: clamp(13px, 1.35vw, 16.5px);
   color: var(--navy);
-  white-space: nowrap;
+  /* nowrap は使わない（幅が足りない環境ではみ出すため）。
+     改行位置は Ja(BudouX) の文節境界に任せる。 */
 }
 
 /* ===== CTA ボタン ===== */
 .cta {
-  display: flex;
+  /* バッジ/文字/矢印を grid で確実に分離し、320px幅でも重ならないようにする。
+     中央は minmax(0,1fr) で「縮められる」トラックにして文字のはみ出しを防ぐ。 */
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: clamp(12px, 1.6vw, 22px);
   width: 100%;
@@ -221,7 +227,7 @@
 }
 
 .ctaText {
-  flex: 1;
+  min-width: 0;
   text-align: center;
   font-family: var(--font-display);
   font-weight: 800;
@@ -231,7 +237,6 @@
 }
 
 .ctaArrow {
-  flex: none;
   color: #0a1a2e;
 }
 
@@ -285,6 +290,36 @@
   }
 }
 
+/* ===== スマホ(〜767px): メリットカードは3カラム→1カラムの横型
+   （左にアイコン・右に文章）。狭い列に3枚押し込んで文字が
+   1〜2文字ずつ折れるのを根本的に防ぐ。 ===== */
+@media (max-width: 767px) {
+  .features {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .feature {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+  }
+
+  .featureText {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .featureSub {
+    font-size: 12px;
+  }
+
+  .featureMain {
+    font-size: clamp(14px, 4vw, 16.5px);
+  }
+}
+
 /* ===== 狭い画面(スマホ): 背景を縦画像にして縦積み ＋ 濃紺(ダーク)テーマ ===== */
 @media (max-width: 599px) {
   .bg {
@@ -324,14 +359,12 @@
   .title {
     color: #fff;
     text-shadow: 0 2px 22px rgba(4, 12, 24, 0.5);
-  }
-
-  /* 360〜400px級では 44px 相当だと「外壁塗装を成功へ。」が2行に割れて4行になるため、
-     画面幅に応じて少し縮小し、PCと同じ3行（信頼できる/業者選びで、/外壁塗装を成功へ。）に収める。 */
-  @media (max-width: 419px) {
-    .title {
-      font-size: clamp(30px, 9.2vw, 40px);
-    }
+    /* スマホは .spbr により「信頼できる/業者選びで/外壁塗装を成功へ」の3行固定。
+       最長行(外壁塗装を成功へ=8文字)が 320〜430px のどの幅でも1行に収まる clamp。
+       極端な縮小はしない（最小30px）。 */
+    font-size: clamp(30px, 9vw, 40px);
+    line-height: 1.3;
+    letter-spacing: 0.02em;
   }
 
   .title em {
