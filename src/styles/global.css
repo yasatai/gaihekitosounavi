@@ -549,32 +549,17 @@ a {
   }
 }
 
-/* ===== Heroをピン留め（固定）：スクロールすると次のセクションが上に重なって出る =====
-   Heroは sticky で画面に貼りつき、続くセクション群（.over-hero）が上に重なって
-   スクロールしていく。重なりが唐突に見えないよう、Heroの中身は
-   useHeroParallax でスクロールに合わせてフェード＆ドリフトさせる（全画面幅対応）。 */
+/* ===== Hero =====
+   ピン留め＋次セクションが重なる演出は廃止。Heroは通常のセクションとして
+   普通にスクロールし、続くセクション群(.over-hero)は下に続くだけ。
+   position:relative は .bg(position:absolute) の配置基準として必要（top等は付けない）。 */
 [data-hero] {
-  position: sticky;
-  /* ヘッダーの直下で固定する（0だと一度ヘッダーの下へ潜り込んでから止まり、
-     二段階の不自然な動きに見える）。--header-h は Header がバー実測値を設定。
-     PC(900px〜)はこの即固定のまま。 */
-  top: var(--header-h, 69px);
+  position: relative;
   z-index: 0;
-}
-
-/* モバイル(〜899px)のみ: Heroを「スクロールで全内容を見せてから固定」する2段階演出。
-   sticky の top を useHeroPin が動的に計算して --hero-sticky-top に入れる
-   （内容が画面より高いと負値になり、下端が画面内に来るまでスクロールしてから固定）。
-   変数が未設定の初期状態は --header-h にフォールバック（＝従来の即固定）。 */
-@media (max-width: 899px) {
-  [data-hero] {
-    top: var(--hero-sticky-top, var(--header-h, 69px));
-  }
 }
 
 .over-hero {
   position: relative;
-  z-index: 1;
 }
 
 /* ===== Reveal on opening-curtain lift (driven by html.is-loaded) ===== */
