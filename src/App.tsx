@@ -15,12 +15,14 @@ import { Loader } from './components/Loader';
 import { ScrollProgress } from './components/ScrollProgress';
 import { useHeroParallax } from './hooks/useHeroParallax';
 import { useHeroReveal } from './hooks/useHeroReveal';
+import { useHeroPin } from './hooks/useHeroPin';
 import { useStages } from './hooks/useStages';
 import { useHorizontalCases } from './hooks/useHorizontalCases';
 
 export default function App() {
   useHeroParallax();
   useHeroReveal();
+  useHeroPin();
   useStages();
   useHorizontalCases();
   return (

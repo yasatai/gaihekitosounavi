@@ -345,11 +345,9 @@
   }
 
   .inner {
-    padding-top: clamp(14px, 4vw, 22px);
-    /* Heroはピン留め（sticky）される。内容が画面より高いと下部（CTA・注記）が
-       下部固定ナビや次セクションの裏に隠れて見えなくなるため、各要素の余白を
-       詰めて内容全体を画面内に収める。下余白は詰めつつナビと重ならない程度に。 */
-    padding-bottom: 28px;
+    padding-top: clamp(26px, 7vw, 40px);
+    /* 下部固定バー（無料相談）に注記が隠れないよう余白を確保 */
+    padding-bottom: 84px;
   }
 
   .content {
@@ -361,8 +359,6 @@
     align-items: center;
     width: 100%;
     color: var(--gold-light);
-    /* 画面内に収めるため余白を詰める */
-    margin-bottom: 8px;
   }
 
   .title {
@@ -372,10 +368,8 @@
        最長行(外壁塗装を成功へ=8文字)が 320〜430px のどの幅でも1行に収まる clamp。
        極端な縮小はしない（最小30px）。 */
     font-size: clamp(30px, 9vw, 40px);
-    line-height: 1.18;
+    line-height: 1.3;
     letter-spacing: 0.02em;
-    /* 画面内に収めるため見出し下の余白を詰める */
-    margin-bottom: 8px;
   }
 
   .title em {
@@ -389,9 +383,6 @@
     color: #fff;
     border-color: rgba(201, 162, 74, 0.6);
     background: rgba(10, 26, 46, 0.35);
-    /* 画面内に収めるため余白を詰める */
-    margin-bottom: 8px;
-    padding: 6px 14px;
   }
 
   .tagline em {
@@ -400,22 +391,12 @@
 
   .lead {
     color: #d5e0ec;
-    /* 画面内に収めるため行間・下余白を詰める */
-    line-height: 1.55;
-    margin-bottom: 8px;
-  }
-
-  /* 特徴3枚の縦積みが最大の塊。余白を詰めて全体を持ち上げる */
-  .features {
-    gap: 6px;
-    margin-bottom: 8px;
   }
 
   .feature {
     border-color: rgba(201, 162, 74, 0.35);
     background: rgba(8, 20, 36, 0.55);
     box-shadow: none;
-    padding: 6px 14px;
   }
 
   .featureIcon {
@@ -441,7 +422,6 @@
   /* CTAを1行に収める */
   .cta {
     gap: 10px;
-    margin-bottom: 8px;
   }
 
   .ctaBadge {
