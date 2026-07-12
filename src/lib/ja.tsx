@@ -29,6 +29,7 @@ const NO_BREAK_WORDS = [
   '見積もり',
   'お問い合わせ',
   '見えにくく',
+  'お願いでき',
   '「何が含まれているか」',
 ];
 function keepWordsTogether(s: string): string {
