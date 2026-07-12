@@ -552,13 +552,29 @@ a {
 /* ===== Heroをピン留め（固定）：スクロールすると次のセクションが上に重なって出る =====
    Heroは sticky で画面に貼りつき、続くセクション群（.over-hero）が上に重なって
    スクロールしていく。重なりが唐突に見えないよう、Heroの中身は
-   useHeroParallax でスクロールに合わせてフェード＆ドリフトさせる（全画面幅対応）。 */
+   useHeroParallax でスクロールに合わせてフェード＆ドリフトさせる。
+
+   位置指定は data-hero に一本化する（.hero 側では position を指定しない。
+   同一要素で詳細度が並ぶと本番ビルドの読み込み順で勝敗が変わり不具合になるため）。
+   既定（モバイル）は relative の通常フロー: Heroは普通にスクロールして全体が見える。
+   ※ relative なのは .bg（position:absolute）の配置基準にするため（static だと
+     .bg がビューポート基準になり背景が崩れる）。 */
 [data-hero] {
-  position: sticky;
-  /* ヘッダーの直下で固定する（0だと一度ヘッダーの下へ潜り込んでから止まり、
-     二段階の不自然な動きに見える）。--header-h は Header がバー実測値を設定。 */
-  top: var(--header-h, 69px);
+  position: relative;
   z-index: 0;
+}
+
+/* デスクトップのみ Hero をピン留め（パララックス演出）。
+   ピン留めは useHeroParallax と同じ min-width:900px 限定にする。
+   モバイルでピン留めすると、Hero内容がビューポートより高い端末（アドレスバー表示時等）で
+   CTA等がHero下部に残り、スクロールしても次セクションに覆われて到達できなくなる。 */
+@media (min-width: 900px) {
+  [data-hero] {
+    position: sticky;
+    /* ヘッダーの直下で固定する（0だと一度ヘッダーの下へ潜り込んでから止まり、
+       二段階の不自然な動きに見える）。--header-h は Header がバー実測値を設定。 */
+    top: var(--header-h, 69px);
+  }
 }
 
 .over-hero {
