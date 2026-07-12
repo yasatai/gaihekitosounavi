@@ -22,27 +22,34 @@ export function Hero() {
 
           {/* 改行位置はクラスで明示制御:
               PC(600px〜): 信頼できる業者選びで / 外壁塗装を成功へ の2行
-              スマホ(〜599px): 信頼できる / 業者選びで / 外壁塗装を成功へ の3行固定 */}
+              スマホ(〜599px): 信頼できる / 業者選びで / 外壁塗装を成功へ の3行固定。
+              各行は Ja(BudouX) で包み、Safari等でフォント幅が広く1行に収まらない場合も
+              文字単位ではなく文節単位で折り返す（1〜2文字の孤立行を防ぐ）。 */}
           <h1 className={styles.title} data-hero-reveal>
-            信頼できる
+            <Ja>信頼できる</Ja>
             <br className="spbr" />
-            業者選びで
+            <Ja>業者選びで</Ja>
             <br />
-            <em>外壁塗装</em>を成功へ
+            <em>外壁塗装</em>
+            <Ja>を成功へ</Ja>
           </h1>
 
           <div className={styles.tagline} data-hero-reveal>
-            <em>宮城</em>で評判の<em>塗装業者を複数比較</em>
+            <em>宮城</em>
+            <Ja>で評判の</Ja>
+            <em>
+              <Ja>塗装業者を複数比較</Ja>
+            </em>
           </div>
 
           <p className={styles.lead} data-hero-reveal>
-            様々な業者の中から、あなたの要望に合わせて
+            <Ja>様々な業者の中から、あなたの要望に合わせて</Ja>
             <br />
-            信頼できる塗装業者を複数比較・検討できます。
+            <Ja>信頼できる塗装業者を複数比較・検討できます。</Ja>
             <br />
-            地元宮城で評判の業者だけを厳選紹介する
+            <Ja>地元宮城で評判の業者だけを厳選紹介する</Ja>
             <br />
-            無料の一括見積もり比較サービスです。
+            <Ja>無料の一括見積もり比較サービスです。</Ja>
           </p>
 
           <div className={styles.features} data-hero-reveal>
@@ -83,7 +90,7 @@ export function Hero() {
 
           <div className={styles.privacy} data-hero-reveal>
             <IconShield />
-            個人情報は厳重に管理しますのでご安心ください
+            <Ja>個人情報は厳重に管理しますのでご安心ください</Ja>
           </div>
         </div>
       </div>

@@ -25,7 +25,7 @@ export function SectionHeading({
         {eyebrow}
       </div>
       <h2 className="heading" style={dark ? { color: '#fff' } : undefined}>
-        {title}
+        <Ja>{title}</Ja>
       </h2>
       {note && (
         <p style={{ margin: '12px 0 0', fontSize: 15.5, color: 'var(--text-muted)' }}>

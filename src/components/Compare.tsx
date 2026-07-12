@@ -32,9 +32,9 @@ export function Compare() {
             <div className={styles.panel}>
               <span className={styles.badge}>総額だけで判断</span>
               <h3 className={styles.panelTitle}>
-                安く見えても
+                <Ja>安く見えても</Ja>
                 <br />
-                理由が分かりにくい
+                <Ja>理由が分かりにくい</Ja>
               </h3>
               <p className={styles.panelText}>
                 <Ja>金額だけでは、工事内容や保証の差が見えにくくなります。</Ja>
@@ -67,7 +67,7 @@ export function Compare() {
             <div className={`${styles.panel} ${styles.panelGood}`}>
               <span className={`${styles.badge} ${styles.badgeGood}`}>中身まで比較</span>
               <h3 className={`${styles.panelTitle} ${styles.panelTitleGood}`}>
-                納得して選びやすい
+                <Ja>納得して選びやすい</Ja>
               </h3>
               <p className={`${styles.panelText} ${styles.panelTextGood}`}>
                 <Ja>複数の見積りで、価格だけでなく工事内容まで確認できます。</Ja>

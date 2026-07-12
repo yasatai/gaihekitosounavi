@@ -48,6 +48,9 @@ html.is-loading body {
 /* Smooth section-to-section scrolling (nav links / scroll cue) */
 html {
   scroll-padding-top: var(--header-h, 72px);
+  /* iOS Safari が横向き時などに文字を自動拡大して行崩れを起こすのを防ぐ */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   /* Always reserve the scrollbar gutter so locking scroll during the opening
      animation doesn't change the layout width (no left-shift when Hero appears). */
   scrollbar-gutter: stable;

@@ -22,7 +22,9 @@ export function Diagnosis() {
         </div>
 
         <div className={styles.panel} data-stage-item>
-          <h3 className={styles.q}>お住まいの築年数を教えてください</h3>
+          <h3 className={styles.q}>
+            <Ja>お住まいの築年数を教えてください</Ja>
+          </h3>
           <p className={styles.qSub}>
             <Ja>前回の塗装からの年数でもOK。塗り替え相談の目安を簡易診断します。</Ja>
           </p>
