@@ -73,6 +73,13 @@ function toNodes(segmented: string): ReactNode[] {
     } else {
       nodes.push(prefix + seg);
     }
+    // ルール: 「。」のあとに文章を続けない（文ごとに改行する）。
+    // BudouX は「。」の直後で必ず区切るので、末尾が「。」の文節の後に後続があれば
+    // 強制改行を入れて次の文を新しい行から始める。末尾が「。」」等（閉じ括弧付き）は
+    // 禁則処理でこの文節の末尾が「。」にならないため対象外（＝括弧の途中で割れない）。
+    if (i < parts.length - 1 && seg.endsWith('。')) {
+      nodes.push(<br key={`br${i}`} />);
+    }
   });
   return nodes;
 }
