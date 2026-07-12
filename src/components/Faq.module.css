@@ -2,6 +2,10 @@
   max-width: 840px;
   margin: 0 auto;
   border-top: 1px solid var(--line);
+  /* 開閉で回答の高さが変わるとき、ブラウザ標準のスクロールアンカリングが
+     自動でスクロール補正するとJS側の位置固定と二重補正になり振動（ガクガク）する。
+     ここで無効化し、補正は Faq.tsx の pin 処理に一本化する。 */
+  overflow-anchor: none;
 }
 
 .item {

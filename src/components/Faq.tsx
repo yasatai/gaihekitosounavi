@@ -12,14 +12,24 @@ export function Faq() {
   // 押した質問の位置がずれて「がくっ」と見える。
   // 開閉アニメーションの間、押した質問行が画面上で動かないよう
   // スクロール位置を毎フレーム補正して固定する（自動で閉じる挙動は維持）。
+  //
+  // ガクガク（振動）対策:
+  //  1) scrollingElement.scrollTop を直接書き換える。window.scrollBy は
+  //     グローバルの scroll-behavior:smooth の影響で滑らかスクロール扱いに
+  //     なる環境があり、毎フレームの補正どうしがキューで競合して振動する。
+  //     直接代入は常に即時なので競合しない。
+  //  2) ブラウザ標準のスクロールアンカリング（overflow-anchor）も高さ変化を
+  //     自動補正するため、JSの補正と二重になって行き過ぎ→振動する。
+  //     .list 側で overflow-anchor:none にして無効化し、補正はJSに一本化する。
   const toggle = (i: number, btn: HTMLElement) => {
     const anchorTop = btn.getBoundingClientRect().top;
     setOpenIndex((cur) => (cur === i ? -1 : i));
+    const scroller = document.scrollingElement || document.documentElement;
     const t0 = performance.now();
     const pin = () => {
       const delta = btn.getBoundingClientRect().top - anchorTop;
       if (delta !== 0) {
-        window.scrollBy({ top: delta, left: 0, behavior: 'instant' });
+        scroller.scrollTop += delta;
       }
       // CSS の transition (0.4s) が終わるまで追従する
       if (performance.now() - t0 < 500) requestAnimationFrame(pin);
