@@ -13,16 +13,12 @@ import { Footer } from './components/Footer';
 import { BottomNav } from './components/BottomNav';
 import { Loader } from './components/Loader';
 import { ScrollProgress } from './components/ScrollProgress';
-import { useHeroParallax } from './hooks/useHeroParallax';
 import { useHeroReveal } from './hooks/useHeroReveal';
-import { useHeroPin } from './hooks/useHeroPin';
 import { useStages } from './hooks/useStages';
 import { useHorizontalCases } from './hooks/useHorizontalCases';
 
 export default function App() {
-  useHeroParallax();
   useHeroReveal();
-  useHeroPin();
   useStages();
   useHorizontalCases();
   return (
@@ -32,7 +28,7 @@ export default function App() {
       <Header />
       <main>
         <Hero />
-        {/* Hero以降のセクションは Hero の上に重なってスクロールする（.over-hero） */}
+        {/* Hero以降のセクション（Heroの重なり演出は廃止し、通常スクロール） */}
         <div className="over-hero">
           <Diagnosis />
           <Compare />
