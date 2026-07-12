@@ -56,7 +56,7 @@ export function Footer() {
         <div>
           <div className={styles.colTitle}>RELATED</div>
           <a
-            href={LALA_REFORM_URL || '#'}
+            href={"https://lala-reform.com"}
             className={styles.lala}
             target="_blank"
             rel="noreferrer"
