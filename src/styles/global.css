@@ -83,6 +83,14 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* モバイルは画面下部に固定のボトムナビがあるため、
+   ページ末尾（フッター）が隠れないよう下部に余白を確保する */
+@media (max-width: 879px) {
+  body {
+    padding-bottom: calc(58px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
 /* 日本語の本文・見出しを文節単位で折り返す（単語の途中で改行されないように）。
    overflow-wrap: break-word は「1文節が行幅を超える場合のみ」最終手段として折り返すので、
    auto-phrase の文節区切りを邪魔しない（anywhere だと毎文字で改行され、お問い/合わせ 等に割れる）。

@@ -1,0 +1,57 @@
+/* ボトムナビゲーション（モバイル専用・画面下部固定）
+   全セクション分のメニューを横スクロールで持ち、現在地をハイライトする。 */
+.bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 55;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+  background: rgba(10, 26, 46, 0.96);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(201, 162, 74, 0.35);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.bar::-webkit-scrollbar {
+  display: none;
+}
+
+.pill {
+  flex: none;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  color: #cdd9e7;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  padding: 8px 14px;
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.pill.active {
+  color: #0a1a2e;
+  background: #fff;
+  border-color: #fff;
+}
+
+/* 無料相談は常にゴールドで強調 */
+.contact {
+  color: #0a1a2e;
+  background: linear-gradient(175deg, #f7e6b0 0%, #e8c877 48%, #d2ac59 100%);
+  border-color: rgba(184, 146, 63, 0.7);
+}
+
+.contact.active {
+  background: #fff;
+  border-color: #fff;
+}

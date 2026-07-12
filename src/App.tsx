@@ -10,7 +10,7 @@ import { Diagnosis } from './components/Diagnosis';
 import { Compare } from './components/Compare';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
-import { FloatingCta } from './components/FloatingCta';
+import { BottomNav } from './components/BottomNav';
 import { Loader } from './components/Loader';
 import { ScrollProgress } from './components/ScrollProgress';
 import { useHeroParallax } from './hooks/useHeroParallax';
@@ -44,7 +44,7 @@ export default function App() {
         </div>
       </main>
       <Footer />
-      <FloatingCta />
+      <BottomNav />
     </>
   );
 }
