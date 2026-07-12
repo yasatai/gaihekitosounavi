@@ -78,6 +78,11 @@
   /* 塗り壁テクスチャの上でも読めるよう濃いネイビーに */
   color: var(--navy-2);
   line-height: 1.95;
+  /* BudouX(keep-all)の文節改行はカード幅次第で行末が短くバラつき、右端が
+     ガタつく（3枚のカードで長さが異なりバランスが崩れる）。balance で各行の
+     長さを揃え、箱サイズは3等分のまま右端を整える。未対応ブラウザは
+     :where(p) の text-wrap:pretty にフォールバックするので悪化しない。 */
+  text-wrap: balance;
 }
 
 .footer {
