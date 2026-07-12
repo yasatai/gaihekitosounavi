@@ -1,5 +1,10 @@
 .hero {
-  position: relative;
+  /* position は global.css の [data-hero] が sticky で与える（同一要素）。
+     ここで position:relative を指定すると詳細度が同じで記述順に勝敗が依存し、
+     本番ビルド（main.css が global.css より後ろ）では relative が勝ってしまい、
+     sticky用の top:var(--header-h) が下方向オフセットとして効いてヘッダー直下に
+     ヘッダー高さぶんの空白ができる。指定しないことで sticky を唯一の position とする。
+     sticky も positioned なので .bg の absolute / .inner の z-index の基準になる。 */
   color: var(--navy);
   overflow: hidden;
   background-color: #f6faff;

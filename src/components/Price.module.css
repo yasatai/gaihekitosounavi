@@ -142,7 +142,10 @@
 .note {
   margin: 28px 0 0;
   font-size: 14.5px;
-  color: var(--text-2);
+  /* 背景写真の上に直接乗る注記なので、薄い --text-2 では読みにくい。
+     濃いネイビー＋やや太字にして可読性を上げる。 */
+  color: var(--navy);
+  font-weight: 600;
   line-height: 2;
   text-align: center;
 }
