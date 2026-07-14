@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // 送信先（メールの宛先）
-$to = 'info@lala-reform.com';
+$to = 'info@lala-reform.com, kurihara@lala-reform.com';
 // 送信元（サイト側の差出人。宛先と同一ドメインにしておくと届きやすい）
 $from = 'info@lala-reform.com';
 
