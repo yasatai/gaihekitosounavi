@@ -95,5 +95,6 @@ AddDefaultCharset UTF-8
   Require all denied
 </FilesMatch>
 
-# --- 404 ページ（必要に応じてトップへ誘導したい場合は下行を有効化） ---
-# ErrorDocument 404 /index.html
+# --- 404 ページ（存在しないURLは専用の404ページを表示し、トップ等へ誘導） ---
+#     ソフト404を避けるため index.html への差し替えではなく専用ページを返す。
+ErrorDocument 404 /404.html

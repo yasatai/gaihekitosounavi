@@ -18,6 +18,11 @@ export function PrivacyPolicy() {
       </header>
 
       <main className={styles.inner}>
+        <nav className={styles.breadcrumb} aria-label="パンくずリスト">
+          <a href={import.meta.env.BASE_URL}>ホーム</a>
+          <span aria-hidden="true">›</span>
+          <span aria-current="page">プライバシーポリシー</span>
+        </nav>
         <div className={styles.eyebrow}>PRIVACY POLICY</div>
         <h1 className={styles.title}>プライバシーポリシー</h1>
 

@@ -66,6 +66,26 @@
   padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 40px) clamp(56px, 7vw, 88px);
 }
 
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: clamp(20px, 4vw, 32px);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.breadcrumb a {
+  color: var(--text-2);
+  text-decoration: none;
+}
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+.breadcrumb span[aria-current] {
+  color: var(--ink);
+}
+
 .eyebrow {
   font-family: var(--font-latin);
   font-weight: 600;
