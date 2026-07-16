@@ -72,7 +72,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className={styles.copy}>© 外壁・屋根塗装ナビ All Rights Reserved.</div>
+      <div className={styles.copy}>© MIYAGI PAINTING NAVI All Rights Reserved.</div>
     </footer>
   );
 }
